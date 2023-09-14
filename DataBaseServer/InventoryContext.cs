@@ -3,9 +3,9 @@ using System.Data.Entity;
 
 namespace DataBase
 {
-    public class Context : DbContext
+    public class InventoryContext : DbContext
     {
-        public Context() : base("DefaultConnection") { }
+        public InventoryContext() : base("DefaultConnection") { }
 
         public DbSet<Auditoruim> Auditoruims { get; set; }
         public DbSet<Consumable> Consumables { get; set; }

@@ -14,7 +14,6 @@ namespace Common
         public int Count { get; private set; }
         public User ResponsibleUser { get; private set; }
         public User TemporarilyResponsibleUser { get; private set; }
-        public string TypeConsumable { get; private set; }
         public ConsumableType ConsumableType { get; private set; }
     }
 }

@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Interface.Items.ConsumableItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Interface.Items"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="900">
+
+    <Border CornerRadius="15" Background="#303041">
+        <Grid>
+
+            <Image HorizontalAlignment="Left" Height="149" Margin="10,10,0,0" VerticalAlignment="Top" Width="150"/>
+
+            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Left" Margin="206,53,0,317" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Name" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TextBlockDescription" HorizontalAlignment="Left" Margin="206,87,0,283" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Description" VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="TextBlockReceiptDate" HorizontalAlignment="Left" Margin="199,137,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ReceiptDate" VerticalAlignment="Top"/>
+            <TextBlock x:Name="TextBlockResponsibleUser" HorizontalAlignment="Left" Margin="10,258,0,112" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ResponsibleUser" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TextBlockTemporarilyResponsibleUser" HorizontalAlignment="Left" Margin="10,314,0,56" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="TemporarilyResponsibleUser" VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="TextBlockCost" HorizontalAlignment="Left" Margin="555,20,0,350" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Cost" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TextBlockConsumableType" HorizontalAlignment="Left" Margin="555,49,0,321" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ConsumableType" VerticalAlignment="Center"/>
+        </Grid>
+    </Border>
+</UserControl>

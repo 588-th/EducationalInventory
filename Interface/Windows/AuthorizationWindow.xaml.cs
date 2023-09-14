@@ -2,28 +2,62 @@
 
 namespace Interface.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для AuthorizationWindow.xaml
-    /// </summary>
     public partial class AuthorizationWindow : Window
     {
         public AuthorizationWindow()
         {
             InitializeComponent();
+
+            ButtonAuthorization.Click += (_, __) => ButtonAuthorization_Click();
         }
 
-        public void OpenAdminWindow()
+        private void ButtonAuthorization_Click()
+        {
+            string login = TextBoxLogin.Text;
+            string password = PasswordBoxPassword.Password;
+
+            (bool isUserValid, string error, string role) = Logic.Authorization.AuthorizeUser(login, password);
+
+            if (!isUserValid)
+            {
+                ShowError(error);
+                return;
+            }
+
+            TextBlockError.Visibility = Visibility.Hidden;
+
+            if (role == "Administrator")
+            {
+                OpenAdminWindow();
+                return;
+            }
+
+            if (role == "Employee")
+            {
+                OpenEmployeeWindow();
+            }
+        }
+
+        private void OpenAdminWindow()
         {
             AdminWindow adminWindow = new AdminWindow();
-            adminWindow.Activate();
-            Close();
+            InterfaceWindows.AdminWindow = adminWindow;
+            InterfaceWindows.AdminWindow.Show();
+            Hide();
         }
 
-        public void OpenEmployeeWindow()
+        private void OpenEmployeeWindow()
         {
             EmployeeWindow employeeWindow = new EmployeeWindow();
-            employeeWindow.Activate();
-            Close();
+            InterfaceWindows.EmployeeWindow = employeeWindow;
+            InterfaceWindows.EmployeeWindow.Show();
+            Hide();
+        }
+
+        private void ShowError(string errorMessage)
+        {
+            TextBlockError.Visibility = Visibility.Visible;
+            TextBlockError.Text = errorMessage;
         }
     }
 }

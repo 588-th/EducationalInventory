@@ -55,11 +55,111 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Windows\AdminWindow.xaml.cs">
-      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    <Compile Include="Items\ConsumableTypeItem.xaml.cs">
+      <DependentUpon>ConsumableTypeItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\NetworkSettingItem.xaml.cs">
+      <DependentUpon>NetworkSettingItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Button.xaml.cs">
+      <DependentUpon>Button.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InterfaceWindows.cs" />
+    <Compile Include="Items\AuditoruimItem.xaml.cs">
+      <DependentUpon>AuditoruimItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ConsumableCharacteristicsItem.xaml.cs">
+      <DependentUpon>ConsumableCharacteristicsItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ConsumableCharacteristicsValuesItem.xaml.cs">
+      <DependentUpon>ConsumableCharacteristicsValuesItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ConsumableItem.xaml.cs">
+      <DependentUpon>ConsumableItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\DeveloperItem.xaml.cs">
+      <DependentUpon>DeveloperItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\EquipmentItem.xaml.cs">
+      <DependentUpon>EquipmentItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\HistoryAudienceEquipmentItem.xaml.cs">
+      <DependentUpon>HistoryAudienceEquipmentItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\HistoryUserConsumableItem.xaml.cs">
+      <DependentUpon>HistoryUserConsumableItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\HistoryUserEquipmentItem.xaml.cs">
+      <DependentUpon>HistoryUserEquipmentItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\InventoryItem.xaml.cs">
+      <DependentUpon>InventoryItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ModelTypeItem.xaml.cs">
+      <DependentUpon>ModelTypeItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ProgrammItem.xaml.cs">
+      <DependentUpon>ProgrammItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\RouteItem.xaml.cs">
+      <DependentUpon>RouteItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\StatusItem.xaml.cs">
+      <DependentUpon>StatusItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\UserItem.xaml.cs">
+      <DependentUpon>UserItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AuditoruimEdit.xaml.cs">
+      <DependentUpon>AuditoruimEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConsumableCharacteristicsEdit.xaml.cs">
+      <DependentUpon>ConsumableCharacteristicsEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConsumableCharacteristicsValuesEdit.xaml.cs">
+      <DependentUpon>ConsumableCharacteristicsValuesEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConsumableEdit.xaml.cs">
+      <DependentUpon>ConsumableEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConsumableTypeEdit.xaml.cs">
+      <DependentUpon>ConsumableTypeEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DeveloperEdit.xaml.cs">
+      <DependentUpon>DeveloperEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EquipmentEdit.xaml.cs">
+      <DependentUpon>EquipmentEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InventoryEdit.xaml.cs">
+      <DependentUpon>InventoryEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ModelTypeEdit.xaml.cs">
+      <DependentUpon>ModelTypeEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NetworkSettingEdit.xaml.cs">
+      <DependentUpon>NetworkSettingEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProgrammEdit.xaml.cs">
+      <DependentUpon>ProgrammEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RouteEdit.xaml.cs">
+      <DependentUpon>RouteEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StatusEdit.xaml.cs">
+      <DependentUpon>StatusEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserEdit.xaml.cs">
+      <DependentUpon>UserEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\EmployeeWindow.xaml.cs">
       <DependentUpon>EmployeeWindow.xaml</DependentUpon>
@@ -68,11 +168,143 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\AdminWindow.xaml">
+    <Page Include="Items\ConsumableTypeItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\NetworkSettingItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AuthorizationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\AuditoruimItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\ConsumableCharacteristicsItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\ConsumableCharacteristicsValuesItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\ConsumableItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\DeveloperItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\EquipmentItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\HistoryAudienceEquipmentItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\HistoryUserConsumableItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\HistoryUserEquipmentItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\InventoryItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\ModelTypeItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\ProgrammItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\RouteItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\StatusItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\UserItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AuditoruimEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ConsumableCharacteristicsEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ConsumableCharacteristicsValuesEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ConsumableEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ConsumableTypeEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DeveloperEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EquipmentEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\InventoryEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ModelTypeEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NetworkSettingEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProgrammEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RouteEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StatusEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,7 +340,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\" />
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{80b6f5d1-53bd-4806-a58b-310e15859bbf}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

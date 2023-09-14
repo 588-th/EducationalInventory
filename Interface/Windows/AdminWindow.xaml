@@ -1,12 +1,68 @@
-﻿<Window x:Class="Interface.Windows.AdminWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Interface.Windows"
-        mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
-    <Grid>
-        
+﻿<Window
+    x:Class="Interface.Windows.AdminWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:Controls="clr-namespace:Interface.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Interface.Windows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    mc:Ignorable="d"
+    WindowStartupLocation="CenterScreen"
+    Title="AdminWindow"
+    Width="1280"
+    Height="720"
+    MinWidth="1280"
+    MinHeight="720">
+
+    <Grid Background="#11111e">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="76*"/>
+            <RowDefinition Height="343*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="205*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Search -->
+        <Border Margin="10,10,10,10" Grid.Column="1" CornerRadius="20" Background="#21212e">
+            <Grid>
+                <TextBlock x:Name="TextBlockHead" Text="Аудитория" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="32" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- Controls -->
+        <Border Grid.RowSpan="2" Margin="10,10,10,10" CornerRadius="20" Background="#21212e">
+            <Grid>
+                <StackPanel Margin="0,0,0,70" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <Controls:Button x:Name="ButtonLoadAuditoruim" Tag="Auditoruim" Margin="10,10,10,5" ControlContent="Аудитории" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadConsumable" Tag="Consumable" Margin="10,5,10,5" ControlContent="Расходные материалы" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadConsumableCharacteristics" Tag="ConsumableCharacteristics" Margin="10,5,10,5" ControlContent="Х. р. материалов" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadConsumableCharacteristicsValues" Tag="ConsumableCharacteristicsValues" Margin="10,5,10,5" ControlContent="Зн. р. матматериалов" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadConsumableType" Tag="ConsumableType" Margin="10,5,10,5" ControlContent="Типы р. материалов" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadDeveloper" Tag="Developer" Margin="10,5,10,5" ControlContent="Разработчики" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadEquipment" Tag="Equipment" Margin="10,5,10,5" ControlContent="Оборудование" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadEquipmentType" Tag="EquipmentType" Margin="10,5,10,5" ControlContent="Типы оборудования" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadHistoryAudienceEquipment" Tag="HistoryAudienceEquipment" Margin="10,5,10,5" ControlContent="История обор. в ауд." ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadHistoryUserConsumable" Tag="HistoryUserConsumable" Margin="10,5,10,5" ControlContent="История полью и р. мат." ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadHistoryUserEquipment" Tag="HistoryUserEquipment" Margin="10,5,10,5" ControlContent="История поль. и обор." ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadInventory" Tag="Inventory" Margin="10,5,10,5" ControlContent="Инвентаризации" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="46"/>
+                    <Controls:Button x:Name="ButtonLoadModelType" Tag="ModelType" Margin="10,5,10,5" ControlContent="Типы моделей" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadNetworkSetting" Tag="NetworkSetting" Margin="10,5,10,5" ControlContent="Сетевые настройки" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadProgramm" Tag="Programm" Margin="10,5,10,5" ControlContent="Программы" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadRoute" Tag="Route" Margin="10,5,10,5" ControlContent="Направления" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadStatus" Tag="LoadStatus" Margin="10,5,10,5" ControlContent="Статусы" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                    <Controls:Button x:Name="ButtonLoadUser" Tag="User" Margin="10,5,10,5" ControlContent="Пользователи" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                </StackPanel>
+                <Controls:Button x:Name="ButtonExit" ControlContent="Выход" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#ef0f41" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#bf0c34" Margin="23,0,23,10" Height="35" VerticalAlignment="Bottom"/>
+            </Grid>
+        </Border>
+
+        <!-- ItemList -->
+        <Border Margin="10,10,10,10" Grid.Row="1" Grid.Column="1" CornerRadius="20" Background="#21212e">
+            <StackPanel x:Name="StackPanelItems" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

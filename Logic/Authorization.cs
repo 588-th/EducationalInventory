@@ -1,21 +1,23 @@
 ﻿namespace Logic
 {
-    class Authorization
+    public static class Authorization
     {
-        private void InitEvents()
-        {
-
-        }
-
-        private void AuthorizeUser(string login, string password)
+        public static (bool, string, string) AuthorizeUser(string login, string password)
         {
             bool isLoginValid = ValidationData.UserValidator.ValidateLogin(login);
             bool isPasswordValid = ValidationData.UserValidator.ValidatePassword(password);
 
-            if (isLoginValid && isPasswordValid)
+            if (!isLoginValid)
             {
-                var a = ProjectWindows.adminWindow;
+                return (false, "Login is not valid", "");
             }
+
+            if (!isPasswordValid)
+            {
+                return (false, "Password is not valid", "");
+            }
+
+            return (true, "", "Administrator");
         }
     }
 }
