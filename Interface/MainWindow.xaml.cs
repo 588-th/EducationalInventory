@@ -12,7 +12,6 @@ namespace Interface
         {
             InitializeComponent();
             OpenAuthorizationWindow();
-            StartDataBase();
         }
 
         private void OpenAuthorizationWindow()
@@ -20,11 +19,6 @@ namespace Interface
             AuthorizationWindow authorizationWindow = new AuthorizationWindow();
             authorizationWindow.Show();
             Close();
-        }
-
-        private void StartDataBase()
-        {
-            Logic.DataBaseLogic.StartDataBase();
         }
     }
 }

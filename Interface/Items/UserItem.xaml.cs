@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Common;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Interface.Items
 {
@@ -20,9 +8,25 @@ namespace Interface.Items
     /// </summary>
     public partial class UserItem : UserControl
     {
-        public UserItem()
+        private User _user;
+        public UserItem(User user)
         {
             InitializeComponent();
+            _user = user;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            TextBlockFirstName.Text = _user.FirstName;
+            TextBlockSecondName.Text = _user.SecondName;
+            TextBlockMiddleName.Text = _user.MiddleName;
+            TextBlockEmail.Text = _user.Email;
+            TextBlockPhone.Text = _user.Phone;
+            TextBlockAddress.Text = _user.Address;
+            TextBlockLogin.Text = _user.Login;
+            TextBlockPassword.Text = _user.Password;
+            TextBlockRole.Text = _user.Role;
         }
     }
 }

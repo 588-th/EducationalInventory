@@ -5,8 +5,8 @@ namespace Common
     public class EquipmentType
     {
         [Key]
-        public int Id { get; private set; }
+        public int Id { get; set; }
         [Required]
-        public string Name { get; private set; }
+        public string Name { get; set; }
     }
 }

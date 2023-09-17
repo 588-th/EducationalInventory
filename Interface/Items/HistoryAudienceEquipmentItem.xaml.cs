@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Common;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Interface.Items
 {
@@ -20,9 +8,22 @@ namespace Interface.Items
     /// </summary>
     public partial class HistoryAudienceEquipmentItem : UserControl
     {
-        public HistoryAudienceEquipmentItem()
+        private HistoryAudienceEquipment _historyAudienceEquipment;
+        public HistoryAudienceEquipmentItem(HistoryAudienceEquipment historyAudienceEquipment)
         {
             InitializeComponent();
+            _historyAudienceEquipment = historyAudienceEquipment;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            Audience audience = Logic.DataBaseLogic.GetEntity<Audience>(_historyAudienceEquipment.AudienceId);
+            Equipment equipment = Logic.DataBaseLogic.GetEntity<Equipment>(_historyAudienceEquipment.EquipmentId);
+
+            TextBlockAudience.Text = audience.Name;
+            TextBlockEquipment.Text = equipment.Name;
+            TextBlockDate.Text = _historyAudienceEquipment.Date;
         }
     }
 }

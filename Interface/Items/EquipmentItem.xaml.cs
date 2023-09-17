@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Common;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Interface.Items
 {
@@ -20,9 +8,43 @@ namespace Interface.Items
     /// </summary>
     public partial class EquipmentItem : UserControl
     {
-        public EquipmentItem()
+        private Equipment _equipment;
+        public EquipmentItem(Equipment equipment)
         {
             InitializeComponent();
+            _equipment = equipment;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            Audience audience = Logic.DataBaseLogic.GetEntity<Audience>(_equipment.AudienceId);
+            EquipmentType equipmentType = Logic.DataBaseLogic.GetEntity<EquipmentType>(_equipment.EquipmentTypeId);
+            ModelType modelType = Logic.DataBaseLogic.GetEntity<ModelType>(_equipment.ModelTypeId);
+            User responsibleUser = Logic.DataBaseLogic.GetEntity<User>(_equipment.ResponsibleUserId);
+            User TemporarilyResponsibleUser = Logic.DataBaseLogic.GetEntity<User>(_equipment.TemporarilyResponsibleUserId);
+            Route route = Logic.DataBaseLogic.GetEntity<Route>(_equipment.RouteId);
+            Status status = Logic.DataBaseLogic.GetEntity<Status>(_equipment.StatusId);
+            NetworkSetting networkSetting = Logic.DataBaseLogic.GetEntity<NetworkSetting>(_equipment.NetworkSettingsId);
+            Programm programm = Logic.DataBaseLogic.GetEntity<Programm>(_equipment.ProgrammId);
+            Consumable consumable = Logic.DataBaseLogic.GetEntity<Consumable>(_equipment.ConsumableId);
+
+
+            // ImagePhoto. =
+            TextBlockNumber.Text = _equipment.Number.ToString();
+            TextBlockName.Text = _equipment.Name.ToString();
+            TextBlockType.Text = equipmentType.Name;
+            TextBlockModel.Text = modelType.Name;
+            TextBlockAudience.Text = audience.Name;
+            TextBlockResponsibleUser.Text = responsibleUser.FirstName + " " + responsibleUser.MiddleName;
+            TextBlockTemporarilyResponsibleUser.Text = TemporarilyResponsibleUser.FirstName + " " + TemporarilyResponsibleUser.MiddleName;
+            TextBlockCost.Text = _equipment.Cost.ToString();
+            TextBlockRoute.Text = route.Name;
+            TextBlockStatus.Text = status.Name;
+            TextBlockNetworkSettings.Text = networkSetting.Ip + " " + networkSetting.Mask + "\n" + networkSetting.Gateway + " " + networkSetting.Dns;
+            TextBlockProgramm.Text = programm.Name;
+            TextBlockConsumable.Text = consumable.Name;
+            TextBlockComment.Text = _equipment.Comment;
         }
     }
 }

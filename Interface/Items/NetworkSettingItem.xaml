@@ -6,20 +6,19 @@
              xmlns:local="clr-namespace:Interface.Items"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="900">
-    
+
     <Border CornerRadius="15" Background="#303041">
         <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <TextBlock x:Name="TextBlockIP" HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="IP" VerticalAlignment="Top"/>
-        <TextBlock x:Name="TextBlockMask" HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Mask" VerticalAlignment="Top" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockIp" HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Ip" VerticalAlignment="Top"/>
+            <TextBlock x:Name="TextBlockMask" HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Mask" VerticalAlignment="Top" Grid.Column="1"/>
 
-        <TextBlock x:Name="TextBlockGatway" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Gatway" VerticalAlignment="Top"/>
-        <TextBlock x:Name="TextBlockDns" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Dns" VerticalAlignment="Top" Grid.Column="1"/>
-    </Grid>
+            <TextBlock x:Name="TextBlockGateway" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Gateway" VerticalAlignment="Top"/>
+            <TextBlock x:Name="TextBlockDns" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Dns" VerticalAlignment="Top" Grid.Column="1"/>
+        </Grid>
     </Border>
-    
 </UserControl>

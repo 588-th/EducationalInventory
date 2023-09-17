@@ -5,11 +5,6 @@ namespace Logic
 {
     public static class DataBaseLogic
     {
-        public static void StartDataBase()
-        {
-            DataBaseLocal.Work.Main();
-        }
-
         public static List<object> GetEntityList(string entityName)
         {
             Type entityType = Common.Entities.GetType(entityName);
@@ -24,6 +19,11 @@ namespace Logic
             var itemsList = (List<object>)genericMethod.Invoke(null, null);
 
             return itemsList;
+        }
+
+        public static TEntity GetEntity<TEntity>(int id) where TEntity : class
+        {
+            return DataBaseLocal.Controll.GetItem<TEntity>(id);
         }
     }
 }

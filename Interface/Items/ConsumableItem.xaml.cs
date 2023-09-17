@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Common;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Interface.Items
 {
@@ -20,9 +8,28 @@ namespace Interface.Items
     /// </summary>
     public partial class ConsumableItem : UserControl
     {
-        public ConsumableItem()
+        private Consumable _consumable;
+        public ConsumableItem(Consumable consumable)
         {
             InitializeComponent();
+            _consumable = consumable;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            User responsibleUser = Logic.DataBaseLogic.GetEntity<User>(_consumable.ResponsibleUserId);
+            User temporarilyResponsibleUser = Logic.DataBaseLogic.GetEntity<User>(_consumable.ResponsibleUserId);
+            ConsumableType consumableType = Logic.DataBaseLogic.GetEntity<ConsumableType>(_consumable.ConsumableTypeId);
+
+            //ImagePhoto. = 
+            TextBlockName.Text = _consumable.Name;
+            TextBlockDescription.Text = _consumable.Description;
+            TextBlockResponsibleUser.Text = responsibleUser.FirstName + " " + responsibleUser.MiddleName;
+            TextBlockTemporarilyResponsibleUser.Text = temporarilyResponsibleUser.FirstName + " " + temporarilyResponsibleUser.MiddleName;
+            TextBlockCount.Text = _consumable.Count.ToString();
+            TextBlockReceiptDate.Text = _consumable.ReceiptDate;
+            TextBlockConsumableType.Text = consumableType.Name;
         }
     }
 }

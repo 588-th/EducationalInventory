@@ -10,13 +10,14 @@
     <Border CornerRadius="15" Background="#303041">
         <Grid>
 
-            <Image HorizontalAlignment="Left" Height="149" Margin="10,10,0,0" VerticalAlignment="Top" Width="150"/>
+            <Image x:Name="ImagePhoto" HorizontalAlignment="Left" Height="149" Margin="10,10,0,0" VerticalAlignment="Top" Width="150"/>
 
             <TextBlock x:Name="TextBlockName" HorizontalAlignment="Left" Margin="206,53,0,317" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Name" VerticalAlignment="Center"/>
             <TextBlock x:Name="TextBlockNumber" HorizontalAlignment="Left" Margin="206,19,0,352" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Number" VerticalAlignment="Center"/>
             <TextBlock x:Name="TextBlockType" HorizontalAlignment="Left" Margin="206,87,0,283" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Type" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TextBlockModel" HorizontalAlignment="Left" Margin="206,117,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Model" VerticalAlignment="Top"/>
 
-            <TextBlock x:Name="TextBlockAuditoruim" HorizontalAlignment="Left" Margin="10,205,0,165" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Auditoruim" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TextBlockAudience" HorizontalAlignment="Left" Margin="10,205,0,165" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Audience" VerticalAlignment="Center"/>
             <TextBlock x:Name="TextBlockResponsibleUser" HorizontalAlignment="Left" Margin="10,258,0,112" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ResponsibleUser" VerticalAlignment="Center"/>
             <TextBlock x:Name="TextBlockTemporarilyResponsibleUser" HorizontalAlignment="Left" Margin="10,314,0,56" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="TemporarilyResponsibleUser" VerticalAlignment="Center"/>
 

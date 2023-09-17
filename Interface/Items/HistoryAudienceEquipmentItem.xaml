@@ -15,9 +15,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="TextBlockAuditoruim" HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Auditoruim" VerticalAlignment="Top"/>
-            <TextBlock x:Name="TextBlockEquipment" HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Equipment" VerticalAlignment="Top" Grid.Column="1"/>
-            <TextBlock x:Name="TextBlockDate" HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Date" VerticalAlignment="Top" Grid.Column="2"/>
+            <TextBlock x:Name="TextBlockAudience" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Audience" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TextBlockEquipment" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Equipment" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockDate" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Date" VerticalAlignment="Center" Grid.Column="2"/>
         </Grid>
     </Border>
 </UserControl>

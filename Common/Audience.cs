@@ -5,11 +5,11 @@ namespace Common
     public class Audience
     {
         [Key]
-        public int Id { get; private set; }
+        public int Id { get; set; }
         [Required]
-        public string Name { get; private set; }
-        public string ShortName { get; private set; }
-        public int ResponsibleUserId { get; private set; }
-        public int TemporarilyResponsibleUserId { get; private set; }
+        public string Name { get; set; }
+        public string ShortName { get; set; }
+        public int ResponsibleUserId { get; set; }
+        public int TemporarilyResponsibleUserId { get; set; }
     }
 }

@@ -6,11 +6,11 @@ namespace Common
     public class NetworkSetting
     {
         [Key]
-        public int Id { get; private set; }
+        public int Id { get; set; }
         [Required]
-        public string Ip { get; private set; }
-        public string Mask { get; private set; }
-        public string Gateway { get; private set; }
-        public string Dns { get; private set; }
+        public string Ip { get; set; }
+        public string Mask { get; set; }
+        public string Gateway { get; set; }
+        public string Dns { get; set; }
     }
 }

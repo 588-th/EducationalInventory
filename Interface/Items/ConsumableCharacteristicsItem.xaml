@@ -14,8 +14,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Name" VerticalAlignment="Top"/>
-            <TextBlock x:Name="TextBlockConsumableCharacteristicsValues" HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ConsumableCharacteristicsValues" VerticalAlignment="Top" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Name" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TextBlockConsumableCharacteristicsValues" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ConsumableCharacteristicsValues" VerticalAlignment="Center" Grid.Column="1"/>
         </Grid>
     </Border>
 </UserControl>

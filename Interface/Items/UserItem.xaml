@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Interface.Items"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="900">
-    
+
     <Border CornerRadius="15" Background="#303041">
         <Grid>
             <Grid.RowDefinitions>
@@ -34,5 +34,4 @@
 
         </Grid>
     </Border>
-
 </UserControl>

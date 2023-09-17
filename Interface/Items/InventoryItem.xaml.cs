@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Common;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Interface.Items
 {
@@ -20,9 +8,24 @@ namespace Interface.Items
     /// </summary>
     public partial class InventoryItem : UserControl
     {
-        public InventoryItem()
+        private Inventory _inventory;
+        public InventoryItem(Inventory inventory)
         {
             InitializeComponent();
+            _inventory = inventory;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            User user = Logic.DataBaseLogic.GetEntity<User>(_inventory.UserId);
+            Equipment equipment = Logic.DataBaseLogic.GetEntity<Equipment>(_inventory.EquipmentId);
+
+            TextBlockName.Text = _inventory.Name;
+            TextBlockStartDate.Text = _inventory.StartDate;
+            TextBlockEndDate.Text = _inventory.EndDate;
+            TextBlockUser.Text = user.FirstName + " " + user.MiddleName;
+            TextBlockEquipment.Text = equipment.Name;
         }
     }
 }

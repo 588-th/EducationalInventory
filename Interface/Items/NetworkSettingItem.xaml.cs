@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Common;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Interface.Items
 {
@@ -20,9 +8,20 @@ namespace Interface.Items
     /// </summary>
     public partial class NetworkSettingItem : UserControl
     {
-        public NetworkSettingItem()
+        private NetworkSetting _networkSetting;
+        public NetworkSettingItem(NetworkSetting networkSetting)
         {
             InitializeComponent();
+            _networkSetting = networkSetting;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            TextBlockIp.Text = _networkSetting.Ip;
+            TextBlockMask.Text = _networkSetting.Mask;
+            TextBlockGateway.Text = _networkSetting.Gateway;
+            TextBlockDns.Text = _networkSetting.Dns;
         }
     }
 }

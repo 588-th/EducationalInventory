@@ -5,7 +5,10 @@ namespace DataBaseServer
 {
     public class ServerInventoryContext : DbContext
     {
-        public ServerInventoryContext() : base("ServerConnection") { }
+        public ServerInventoryContext() : base("ServerConnection")
+        {
+            Database.SetInitializer(new CreateDatabaseIfNotExists<ServerInventoryContext>());
+        }
 
         public DbSet<Audience> Audiences { get; set; }
         public DbSet<Consumable> Consumables { get; set; }

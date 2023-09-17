@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Common;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Interface.Items
 {
@@ -20,9 +8,23 @@ namespace Interface.Items
     /// </summary>
     public partial class ConsumableCharacteristicsItem : UserControl
     {
-        public ConsumableCharacteristicsItem()
+        private ConsumableCharacteristics _consumableCharacteristics;
+        public ConsumableCharacteristicsItem(ConsumableCharacteristics consumableCharacteristics)
         {
             InitializeComponent();
+            _consumableCharacteristics = consumableCharacteristics;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            if (_consumableCharacteristics != null)
+            {
+                ConsumableCharacteristicsValues consumableCharacteristicsValues = Logic.DataBaseLogic.GetEntity<ConsumableCharacteristicsValues>(_consumableCharacteristics.ConsumableCharacteristicsValuesId);
+
+                TextBlockName.Text = _consumableCharacteristics.Name;
+                TextBlockConsumableCharacteristicsValues.Text = consumableCharacteristicsValues.Name;
+            }
         }
     }
 }

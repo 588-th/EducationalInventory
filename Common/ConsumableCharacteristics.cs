@@ -5,8 +5,8 @@ namespace Common
     public class ConsumableCharacteristics
     {
         [Key]
-        public int Id { get; private set; }
-        public string Name { get; private set; }
-        public int ConsumableCharacteristicsValuesId { get; private set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int ConsumableCharacteristicsValuesId { get; set; }
     }
 }
