@@ -1,17 +1,23 @@
 ﻿using Common;
 using System.Data.Entity;
 
-namespace DataBase
+namespace DataBaseLocal
 {
-    public class Context : DbContext
+    public class LocalInventoryContext : DbContext
     {
-        public Context() : base("DefaultConnection") { }
+        public LocalInventoryContext() : base("LocalConnection")
+        {
+            Database.SetInitializer(new CreateDatabaseIfNotExists<LocalInventoryContext>());
+        }
 
-        public DbSet<Auditoruim> Auditoruims { get; set; }
+        public DbSet<Audience> Audiences { get; set; }
         public DbSet<Consumable> Consumables { get; set; }
-        public DbSet<CharacteristicsConsumable> CharacteristicsConsumables { get; set; }
+        public DbSet<ConsumableCharacteristics> ConsumablesCharacteristics { get; set; }
+        public DbSet<ConsumableCharacteristicsValues> ConsumablesCharacteristicsValues { get; set; }
+        public DbSet<ConsumableType> ConsumablesType { get; set; }
         public DbSet<Developer> Developers { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<EquipmentType> EquipmentsType { get; set; }
         public DbSet<HistoryAudienceEquipment> HistoryAudienceEquipments { get; set; }
         public DbSet<HistoryUserConsumable> HistoryUserConsumables { get; set; }
         public DbSet<HistoryUserEquipment> HistoryUserEquipments { get; set; }
@@ -20,8 +26,7 @@ namespace DataBase
         public DbSet<Programm> Programms { get; set; }
         public DbSet<Route> Routes { get; set; }
         public DbSet<Status> Statuses { get; set; }
-        public DbSet<TypeEquipment> TypeEquipments { get; set; }
-        public DbSet<TypeModel> TypeModels { get; set; }
+        public DbSet<ModelType> ModelsType { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using DataBase;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -10,12 +9,12 @@ namespace DataBaseServer
     {
         public static bool IsDataBaseExist()
         {
-            return Database.Exists("DefaultConnection");
+            return Database.Exists("ServerConnection");
         }
 
         public static List<object> GetItemsList(string entityName)
         {
-            using (var dbContext = new InventoryContext())
+            using (var dbContext = new ServerInventoryContext())
             {
                 // Find the DbSet corresponding to the entity name
                 var entityType = Type.GetType("DataBase." + entityName);

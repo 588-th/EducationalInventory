@@ -42,10 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Auditoruim.cs" />
+    <Compile Include="Audience.cs" />
     <Compile Include="ConsumableCharacteristics.cs" />
     <Compile Include="Consumable.cs" />
     <Compile Include="Developer.cs" />
+    <Compile Include="Entities.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="HistoryAudienceEquipment.cs" />
     <Compile Include="HistoryUserConsumable.cs" />

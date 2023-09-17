@@ -34,8 +34,8 @@
         <!-- Controls -->
         <Border Grid.RowSpan="2" Margin="10,10,10,10" CornerRadius="20" Background="#21212e">
             <Grid>
-                <StackPanel Margin="0,0,0,70" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                    <Controls:Button x:Name="ButtonLoadAuditoruim" Tag="Auditoruim" Margin="10,10,10,5" ControlContent="Аудитории" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
+                <StackPanel Margin="0,0,0,70">
+                    <Controls:Button x:Name="ButtonLoadAudience" Tag="Audience" Margin="10,10,10,5" ControlContent="Аудитории" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
                     <Controls:Button x:Name="ButtonLoadConsumable" Tag="Consumable" Margin="10,5,10,5" ControlContent="Расходные материалы" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
                     <Controls:Button x:Name="ButtonLoadConsumableCharacteristics" Tag="ConsumableCharacteristics" Margin="10,5,10,5" ControlContent="Х. р. материалов" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>
                     <Controls:Button x:Name="ButtonLoadConsumableCharacteristicsValues" Tag="ConsumableCharacteristicsValues" Margin="10,5,10,5" ControlContent="Зн. р. матматериалов" ControlCornerRadius="5" ControlFontSize="18" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" Height="45"/>

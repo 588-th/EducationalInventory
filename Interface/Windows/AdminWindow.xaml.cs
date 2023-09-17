@@ -14,7 +14,7 @@ namespace Interface.Windows
             InitializeComponent();
 
             ButtonExit.Click += (_, __) => Exit();
-            ButtonLoadAuditoruim.Click += (sender, __) => ButtonLoadData_Click(sender);
+            ButtonLoadAudience.Click += (sender, __) => ButtonLoadData_Click(sender);
             ButtonLoadConsumable.Click += (sender, __) => ButtonLoadData_Click(sender);
             ButtonLoadConsumableCharacteristics.Click += (sender, __) => ButtonLoadData_Click(sender);
             ButtonLoadConsumableCharacteristicsValues.Click += (sender, __) => ButtonLoadData_Click(sender);
@@ -44,7 +44,7 @@ namespace Interface.Windows
         private void ButtonLoadData_Click(object sender)
         {
             string entitytName;
-            if (sender is Button button)
+            if (sender is Interface.Controls.Button button)
             {
                 entitytName = button.Tag.ToString();
                 OutputHead(entitytName);
@@ -61,7 +61,7 @@ namespace Interface.Windows
         {
             StackPanelItems.Children.Clear();
 
-            var itemsList = Logic.SearchData.GetEntityList(entityName);
+            var itemsList = Logic.DataBaseLogic.GetEntityList(entityName);
 
             foreach (var item in itemsList)
             {

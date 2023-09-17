@@ -20,7 +20,7 @@
         <TextBlock HorizontalAlignment="Center" Margin="0,240,0,0" FontSize="20" Foreground="White" FontWeight="Bold" Text="Пароль" VerticalAlignment="Top"/>
 
         <TextBox x:Name="TextBoxLogin" HorizontalAlignment="Center" Height="25" Margin="0,200,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="150" Background="#303041" Foreground="#B0B7C3"/>
-        <PasswordBox x:Name="PasswordBoxPassword" Height="25" Background="#303041" Foreground="#B0B7C3" HorizontalAlignment="Center" Margin="0,280,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="166"/>
+        <PasswordBox x:Name="PasswordBoxPassword" Height="25" Background="#303041" Foreground="#B0B7C3" HorizontalAlignment="Center" Margin="0,280,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="150"/>
         <controls:Button x:Name="ButtonAuthorization" ControlContent="Войти" ControlCornerRadius="5" ControlFontSize="12" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" HorizontalAlignment="Center" Margin="0,350,0,0" VerticalAlignment="Top" Height="30" Width="100"/>
     </Grid>
 </Window>

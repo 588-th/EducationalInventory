@@ -42,8 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization.cs" />
+    <Compile Include="DataBaseLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -51,7 +51,7 @@
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataBaseLocal\DataBaseLocal.csproj">
-      <Project>{fbbf8615-950f-4a0e-9bba-fe882f68764b}</Project>
+      <Project>{b86e6098-dce4-44a3-b2f3-7473ebc8d214}</Project>
       <Name>DataBaseLocal</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataBaseServer\DataBaseServer.csproj">

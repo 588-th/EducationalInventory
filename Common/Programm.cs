@@ -8,7 +8,7 @@ namespace Common
         public int Id { get; private set; }
         [Required]
         public string Name { get; private set; }
-        public Developer Developer { get; private set; }
+        public int DeveloperId { get; private set; }
         public string Version { get; private set; }
     }
 }

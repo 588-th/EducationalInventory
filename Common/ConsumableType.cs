@@ -8,6 +8,6 @@ namespace Common
         [Key]
         public int Id { get; private set; }
         public string Name { get; private set; }
-        public List<ConsumableCharacteristics> ConsumableCharacteristics { get; private set; }
+        public int ConsumableCharacteristicsId { get; private set; }
     }
 }

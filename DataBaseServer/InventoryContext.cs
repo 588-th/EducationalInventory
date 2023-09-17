@@ -1,13 +1,13 @@
 ﻿using Common;
 using System.Data.Entity;
 
-namespace DataBase
+namespace DataBaseServer
 {
-    public class InventoryContext : DbContext
+    public class ServerInventoryContext : DbContext
     {
-        public InventoryContext() : base("DefaultConnection") { }
+        public ServerInventoryContext() : base("ServerConnection") { }
 
-        public DbSet<Auditoruim> Auditoruims { get; set; }
+        public DbSet<Audience> Audiences { get; set; }
         public DbSet<Consumable> Consumables { get; set; }
         public DbSet<ConsumableCharacteristics> ConsumablesCharacteristics { get; set; }
         public DbSet<ConsumableCharacteristicsValues> ConsumablesCharacteristicsValues { get; set; }

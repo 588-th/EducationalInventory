@@ -7,8 +7,8 @@ namespace Common
     {
         [Key]
         public int Id { get; private set; }
-        public User User { get; private set; }
-        public Consumable Consumable { get; private set; }
-        public DateTime Date { get; private set; }
+        public int UserId { get; private set; }
+        public int ConsumableId { get; private set; }
+        public string Date { get; private set; }
     }
 }

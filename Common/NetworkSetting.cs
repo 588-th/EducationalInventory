@@ -11,6 +11,6 @@ namespace Common
         public string Ip { get; private set; }
         public string Mask { get; private set; }
         public string Gateway { get; private set; }
-        public List<string> Dns { get; private set; }
+        public string Dns { get; private set; }
     }
 }

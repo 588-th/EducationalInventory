@@ -7,8 +7,8 @@ namespace Common
     {
         [Key]
         public int Id { get; private set; }
-        public Auditoruim Auditoruim { get; private set; }
-        public Equipment Equipment { get; private set; }
-        public DateTime Date { get; private set; }
+        public int AudienceId { get; private set; }
+        public int EquipmentId { get; private set; }
+        public string Date { get; private set; }
     }
 }

@@ -2,14 +2,14 @@
 
 namespace Common
 {
-    public class Auditoruim
+    public class Audience
     {
         [Key]
         public int Id { get; private set; }
         [Required]
         public string Name { get; private set; }
         public string ShortName { get; private set; }
-        public User ResponsibleUser { get; private set; }
-        public User TemporarilyResponsibleUser { get; private set; }
+        public int ResponsibleUserId { get; private set; }
+        public int TemporarilyResponsibleUserId { get; private set; }
     }
 }
