@@ -1,4 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using Common;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace ValidationData
 {
@@ -7,6 +10,38 @@ namespace ValidationData
     /// </summary>
     public static class NetworkSettingValidator
     {
+        public static (bool result, string error) ValidateNetworkSetting(NetworkSetting networkSetting)
+        {
+            Dictionary<Func<string, bool>, string> validationChecks = new Dictionary<Func<string, bool>, string>
+            {
+                { ValidateIP, "Invalid IP format" },
+                { ValidateMask, "Invalid mask format" },
+                { ValidateGateway, "Invalid gateway format" },
+                { ValidateDns, "Invalid DNS format" }
+            };
+
+            foreach (var validationCheck in validationChecks)
+            {
+                bool isValid = validationCheck.Key.Invoke(GetNetworkSettingField(networkSetting, validationCheck.Key));
+                if (!isValid)
+                {
+                    return (false, validationCheck.Value);
+                }
+            }
+
+            return (true, "");
+        }
+
+        private static string GetNetworkSettingField(NetworkSetting networkSetting, Func<string, bool> validationFunction)
+        {
+            if (validationFunction == ValidateIP) return networkSetting.Ip;
+            if (validationFunction == ValidateMask) return networkSetting.Mask;
+            if (validationFunction == ValidateGateway) return networkSetting.Gateway;
+            if (validationFunction == ValidateDns) return networkSetting.Dns;
+
+            return string.Empty;
+        }
+
         /// <summary>
         /// Validates an IPv4 address.
         /// </summary>

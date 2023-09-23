@@ -1,4 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using Common;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace ValidationData
 {
@@ -7,6 +10,48 @@ namespace ValidationData
     /// </summary>
     public static class UserValidator
     {
+        public static (bool result, string error) ValidateUser(User user)
+        {
+            Dictionary<Func<string, bool>, string> validationChecks = new Dictionary<Func<string, bool>, string>
+            {
+                { ValidateLogin, "Invalid login format" },
+                { ValidatePassword, "Invalid password format" },
+                { ValidateFirstName, "Invalid first name format" },
+                { ValidateSecondName, "Invalid last name format" },
+                { ValidateMiddleName, "Invalid middle name format" },
+                { ValidateRole, "Invalid role format" },
+                { ValidatePhoneNumber, "Invalid phone number format" },
+                { ValidateEmail, "Invalid email format" },
+                { ValidateAddress, "Invalid address format" }
+            };
+
+            foreach (var validationCheck in validationChecks)
+            {
+                bool isValid = validationCheck.Key.Invoke(GetUserField(user, validationCheck.Key));
+                if (!isValid)
+                {
+                    return (false, validationCheck.Value);
+                }
+            }
+
+            return (true, "");
+        }
+
+        private static string GetUserField(User user, Func<string, bool> validationFunction)
+        {
+            if (validationFunction == ValidateLogin) return user.Login;
+            if (validationFunction == ValidatePassword) return user.Password;
+            if (validationFunction == ValidateFirstName) return user.FirstName;
+            if (validationFunction == ValidateSecondName) return user.SecondName;
+            if (validationFunction == ValidateMiddleName) return user.MiddleName;
+            if (validationFunction == ValidateRole) return user.Role;
+            if (validationFunction == ValidatePhoneNumber) return user.Phone;
+            if (validationFunction == ValidateEmail) return user.Email;
+            if (validationFunction == ValidateAddress) return user.Address;
+
+            return string.Empty;
+        }
+
         /// <summary>
         /// Validates a user login for length and allowed characters.
         /// </summary>
@@ -87,7 +132,7 @@ namespace ValidationData
         /// </summary>
         /// <param name="secondName">The user's second name to validate.</param>
         /// <returns>True if the second name is valid, otherwise false.</returns>
-        public static bool ValidateSecondtName(string secondName)
+        public static bool ValidateSecondName(string secondName)
         {
             string secondNamePattern = @"^[A-Z][a-z]*$";
 

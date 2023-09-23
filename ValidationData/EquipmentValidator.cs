@@ -1,10 +1,42 @@
-﻿namespace ValidationData
+﻿using Common;
+using System;
+using System.Collections.Generic;
+
+namespace ValidationData
 {
     /// <summary>
     /// Provides methods for validating equipment-related data, such as inventory numbers and costs.
     /// </summary>
     public static class EquipmentValidator
     {
+        public static (bool result, string error) ValidateEquipment(Equipment equipment)
+        {
+            Dictionary<Func<string, bool>, string> validationChecks = new Dictionary<Func<string, bool>, string>
+            {
+                { ValidateInventoryNumber, "Invalid inventory number format" },
+                { ValidateCost, "Invalid cost format" }
+            };
+
+            foreach (var validationCheck in validationChecks)
+            {
+                bool isValid = validationCheck.Key.Invoke(GetEquipmentField(equipment, validationCheck.Key));
+                if (!isValid)
+                {
+                    return (false, validationCheck.Value);
+                }
+            }
+
+            return (true, "");
+        }
+
+        private static string GetEquipmentField(Equipment equipment, Func<string, bool> validationFunction)
+        {
+            if (validationFunction == ValidateInventoryNumber) return equipment.Number.ToString();
+            if (validationFunction == ValidateCost) return equipment.Cost.ToString();
+
+            return string.Empty;
+        }
+
         /// <summary>
         /// Validates an inventory number to ensure it represents an integer value.
         /// </summary>

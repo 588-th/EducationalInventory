@@ -29,7 +29,7 @@
         <Border Grid.Column="1" Margin="10" CornerRadius="20" Background="#21212e">
             <Grid>
                 <TextBlock Text="Статус" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="32" Margin="0,15,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                <TextBlock Text="Error" HorizontalAlignment="Center" Foreground="#ef0f41" FontSize="14" Margin="0,65,0,0" VerticalAlignment="Top" Grid.Column="1" Visibility="Hidden"/>
+                <TextBlock x:Name="TextBlockError" Text="Error" HorizontalAlignment="Center" Foreground="#ef0f41" FontSize="14" Margin="0,65,0,0" VerticalAlignment="Top" Grid.Column="1" Visibility="Hidden"/>
 
                 <TextBlock HorizontalAlignment="Center" Margin="0,100,0,0" FontSize="14" Foreground="White" FontWeight="Bold" Text="Name" VerticalAlignment="Top"/>
 

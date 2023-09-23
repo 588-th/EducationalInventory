@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Interface.Items"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="900">
+             Height="350" d:DesignWidth="900">
 
-    <Border CornerRadius="15" Background="#303041">
+    <Border CornerRadius="15" Background="#303041" Margin="10,5,10,5">
         <Grid>
             <Image x:Name="ImagePhoto" HorizontalAlignment="Left" Height="149" Margin="10,10,0,0" VerticalAlignment="Top" Width="150"/>
 

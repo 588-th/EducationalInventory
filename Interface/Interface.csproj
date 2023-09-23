@@ -67,6 +67,9 @@
     <Compile Include="Items\ConsumableTypeItem.xaml.cs">
       <DependentUpon>ConsumableTypeItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Items\EmptyItem.xaml.cs">
+      <DependentUpon>EmptyItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Items\NetworkSettingItem.xaml.cs">
       <DependentUpon>NetworkSettingItem.xaml</DependentUpon>
     </Compile>
@@ -179,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Items\ConsumableTypeItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\EmptyItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -354,6 +361,9 @@
       <Project>{80b6f5d1-53bd-4806-a58b-310e15859bbf}</Project>
       <Name>Logic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddItem.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

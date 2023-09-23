@@ -1,88 +1,135 @@
-﻿using System;
+﻿using Logic;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Interface.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для AdminWindow.xaml
-    /// </summary>
     public partial class AdminWindow : Window
     {
         public AdminWindow()
         {
             InitializeComponent();
+            InitializeButtonEventHandlers();
+        }
 
+        private void InitializeButtonEventHandlers()
+        {
+            AttachButtonClickHandler(ButtonLoadAudience, "Audience");
+            AttachButtonClickHandler(ButtonLoadConsumable, "Consumable");
+            AttachButtonClickHandler(ButtonLoadConsumableCharacteristics, "ConsumableCharacteristics");
+            AttachButtonClickHandler(ButtonLoadConsumableCharacteristicsValues, "ConsumableCharacteristicsValues");
+            AttachButtonClickHandler(ButtonLoadConsumableType, "ConsumableType");
+            AttachButtonClickHandler(ButtonLoadDeveloper, "Developer");
+            AttachButtonClickHandler(ButtonLoadEquipment, "Equipment");
+            AttachButtonClickHandler(ButtonLoadEquipmentType, "EquipmentType");
+            AttachButtonClickHandler(ButtonLoadHistoryAudienceEquipment, "HistoryAudienceEquipment");
+            AttachButtonClickHandler(ButtonLoadHistoryUserConsumable, "HistoryUserConsumable");
+            AttachButtonClickHandler(ButtonLoadHistoryUserEquipment, "HistoryUserEquipment");
+            AttachButtonClickHandler(ButtonLoadInventory, "HistoryUserEquipment");
+            AttachButtonClickHandler(ButtonLoadModelType, "ModelType");
+            AttachButtonClickHandler(ButtonLoadNetworkSetting, "NetworkSetting");
+            AttachButtonClickHandler(ButtonLoadProgramm, "Programm");
+            AttachButtonClickHandler(ButtonLoadRoute, "Route");
+            AttachButtonClickHandler(ButtonLoadStatus, "Status");
+            AttachButtonClickHandler(ButtonLoadUser, "User");
+
+            ButtonBack.Click += (_, __) => ClosePage();
             ButtonExit.Click += (_, __) => Exit();
-            ButtonLoadAudience.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadConsumable.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadConsumableCharacteristics.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadConsumableCharacteristicsValues.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadConsumableCharacteristicsValues.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadDeveloper.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadDeveloper.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadEquipmentType.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadHistoryAudienceEquipment.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadHistoryUserConsumable.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadHistoryUserEquipment.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadInventory.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadModelType.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadNetworkSetting.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadProgramm.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadRoute.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadStatus.Click += (sender, __) => ButtonLoadData_Click(sender);
-            ButtonLoadUser.Click += (sender, __) => ButtonLoadData_Click(sender);
+        }
+
+        private void AttachButtonClickHandler(Controls.Button button, string entityName)
+        {
+            ClosePage();
+            button.Click += (_, __) => OutputHead(entityName);
+            button.Click += (_, __) => OutputItems(entityName);
         }
 
         private void Exit()
         {
-            AuthorizationWindow authorizationWindow = new AuthorizationWindow();
+            var authorizationWindow = new AuthorizationWindow();
             authorizationWindow.Show();
             Close();
         }
 
-        private void ButtonLoadData_Click(object sender)
+        private void OutputHead(string entityName)
         {
-            string entitytName;
-            if (sender is Interface.Controls.Button button)
-            {
-                entitytName = button.Tag.ToString();
-                OutputHead(entitytName);
-                OutputItems(entitytName);
-            }
-        }
-
-        private void OutputHead(string entitytName)
-        {
-            TextBlockHead.Text = entitytName;
+            TextBlockHead.Text = entityName;
         }
 
         private void OutputItems(string entityName)
         {
             StackPanelItems.Children.Clear();
+            var emptyItem = new Items.EmptyItem();
+            StackPanelItems.Children.Add(emptyItem);
 
-            var itemsList = Logic.DataBaseLogic.GetEntityList(entityName);
-
-            foreach (var item in itemsList)
+            try
             {
-                UserControl userControl = CreateUserControlForItem(item);
-                StackPanelItems.Children.Add(userControl);
+                var itemsList = DataBaseLogic.GetEntityList(entityName);
+
+                if (itemsList.Count > 0)
+                {
+                    emptyItem.MouseDoubleClick += (sender, e) =>
+                    {
+                        Page page = CreatePageForItem(itemsList[0]);
+                        mainFrame.Navigate(page);
+                    };
+
+                    foreach (var item in itemsList)
+                    {
+                        var userControl = CreateUserControlForItem(item);
+                        StackPanelItems.Children.Add(userControl);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading data: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private UserControl CreateUserControlForItem(object item)
         {
-            Type itemType = item.GetType();
+            var itemType = item.GetType();
             string userControlTypeName = $"{itemType.Name}Item";
+            var userControlType = Type.GetType($"Interface.Items.{userControlTypeName}");
 
-            Type userControlType = Type.GetType(userControlTypeName);
-
-            if (userControlType == null || !typeof(UserControl).IsAssignableFrom(userControlType))
+            if (userControlType != null && typeof(UserControl).IsAssignableFrom(userControlType))
+            {
+                return (UserControl)Activator.CreateInstance(userControlType, item);
+            }
+            else
             {
                 throw new InvalidOperationException($"No suitable UserControl found for item type: {itemType.Name}");
             }
+        }
 
-            return (UserControl)Activator.CreateInstance(userControlType, item);
+        private Page CreatePageForItem(object item)
+        {
+            var itemType = item.GetType();
+            string pageTypeName = $"{itemType.Name}Edit";
+            var pageType = Type.GetType($"Interface.Pages.{pageTypeName}");
+
+            if (pageType != null && typeof(Page).IsAssignableFrom(pageType))
+            {
+                return (Page)Activator.CreateInstance(pageType, item);
+            }
+            else
+            {
+                throw new InvalidOperationException($"No suitable Page found for item type: {itemType.Name}");
+            }
+        }
+
+        void ClosePage()
+        {
+            if (mainFrame.CanGoBack)
+            {
+                mainFrame.GoBack();
+            }
+            else
+            {
+                mainFrame.Content = null;
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -9,27 +8,53 @@ namespace DataBaseServer
     {
         public static bool IsDataBaseExist()
         {
-            return Database.Exists("ServerConnection");
+            using (var dbContext = new ServerInventoryContext())
+            {
+                return Database.Exists("ServerConnection");
+            }
         }
 
-        public static List<object> GetItemsList(string entityName)
+        public static List<TEntity> GetItemList<TEntity>() where TEntity : class
         {
             using (var dbContext = new ServerInventoryContext())
             {
-                // Find the DbSet corresponding to the entity name
-                var entityType = Type.GetType("DataBase." + entityName);
-                if (entityType == null)
-                {
-                    throw new ArgumentException("Invalid entity name.");
-                }
+                return dbContext.Set<TEntity>().ToList();
+            }
+        }
 
-                // Get the DbSet using reflection
-                var dbSet = dbContext.Set(entityType);
+        public static TEntity GetItem<TEntity>(int id) where TEntity : class
+        {
+            using (var dbContext = new ServerInventoryContext())
+            {
+                DbSet<TEntity> entitySet = dbContext.Set<TEntity>();
+                return entitySet.Find(id);
+            }
+        }
 
-                // Query the database to retrieve items
-                var items = dbSet.Cast<object>().ToList();
+        public static void AddEntity<TEntity>(TEntity entity) where TEntity : class
+        {
+            using (var context = new ServerInventoryContext())
+            {
+                context.Set<TEntity>().Add(entity);
+                context.SaveChanges();
+            }
+        }
 
-                return items;
+        public static void UpdateEntity<TEntity>(TEntity entity) where TEntity : class
+        {
+            using (var context = new ServerInventoryContext())
+            {
+                context.Entry(entity).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public static void DeleteEntity<TEntity>(TEntity entity) where TEntity : class
+        {
+            using (var context = new ServerInventoryContext())
+            {
+                context.Entry(entity).State = EntityState.Deleted;
+                context.SaveChanges();
             }
         }
     }

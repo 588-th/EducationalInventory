@@ -12,6 +12,7 @@ namespace Interface
         {
             InitializeComponent();
             OpenAuthorizationWindow();
+            Logic.DataBaseLogic.IsDataBasesExist();
         }
 
         private void OpenAuthorizationWindow()
