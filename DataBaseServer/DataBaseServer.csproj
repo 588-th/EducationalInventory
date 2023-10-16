@@ -51,8 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controll.cs" />
-    <Compile Include="ServerInventoryContext.cs" />
+    <Compile Include="Controll\StatusChecker.cs" />
+    <Compile Include="Content\ServerInventoryContext.cs" />
+    <Compile Include="Controll\EntityModify.cs" />
+    <Compile Include="Controll\EntityReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

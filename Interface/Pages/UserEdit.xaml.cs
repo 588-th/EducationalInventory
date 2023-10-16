@@ -4,9 +4,6 @@ using System.Windows.Controls;
 
 namespace Interface.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для UserEdit.xaml
-    /// </summary>
     public partial class UserEdit : Page
     {
         private User _user;
@@ -15,14 +12,18 @@ namespace Interface.Pages
         {
             InitializeComponent();
             _user = user;
-            LoadData();
-
-            ButtonAdd.Click += (_, __) => ModifyUser(DataBaseLogic.Action.Add);
-            ButtonUpdate.Click += (_, __) => ModifyUser(DataBaseLogic.Action.Update);
-            ButtonDelete.Click += (_, __) => ModifyUser(DataBaseLogic.Action.Delete);
+            InitializeUI();
+            InitializeButtons();
         }
 
-        private void LoadData()
+        public UserEdit()
+        {
+            InitializeComponent();
+            InitializeUI();
+            InitializeButtons();
+        }
+
+        private void InitializeUI()
         {
             ComboBoxRole.Items.Add("Administrator");
             ComboBoxRole.Items.Add("Employee");
@@ -41,25 +42,31 @@ namespace Interface.Pages
             }
         }
 
-        private void ModifyUser(DataBaseLogic.Action action)
+        private void InitializeButtons()
         {
-            User user = new User
-            {
-                Login = TextBoxLogin.Text,
-                Password = TextBoxPassword.Text,
-                Role = ComboBoxRole.SelectedItem.ToString(),
-                FirstName = TextBoxFirstName.Text,
-                SecondName = TextBoxSecondName.Text,
-                MiddleName = TextBoxMiddleName.Text,
-                Phone = TextBoxPhone.Text,
-                Email = TextBoxEmail.Text,
-                Address = TextBoxAddress.Text,
-            };
+            ButtonAdd.Click += (_, __) => ModifyUser(DatabaseModify.Action.Add);
+            ButtonUpdate.Click += (_, __) => ModifyUser(DatabaseModify.Action.Update);
+            ButtonDelete.Click += (_, __) => ModifyUser(DatabaseModify.Action.Delete);
+        }
 
-            (bool result, string error) = DataBaseLogic.ModifyUser(user, action);
+        private void ModifyUser(DatabaseModify.Action action)
+        {
+            var user = _user ?? new User();
+
+            user.Login = TextBoxLogin.Text;
+            user.Password = TextBoxPassword.Text;
+            user.Role = ComboBoxRole.SelectedItem?.ToString();
+            user.FirstName = TextBoxFirstName.Text;
+            user.SecondName = TextBoxSecondName.Text;
+            user.MiddleName = TextBoxMiddleName.Text;
+            user.Phone = TextBoxPhone.Text;
+            user.Email = TextBoxEmail.Text;
+            user.Address = TextBoxAddress.Text;
+
+            var (result, error) = DatabaseModify.ModifyEntity(user, action);
 
             TextBlockError.Text = result ? "" : error;
-            TextBlockError.Visibility = result ? System.Windows.Visibility.Hidden : System.Windows.Visibility.Visible;
+            TextBlockError.Visibility = result ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
         }
     }
 }

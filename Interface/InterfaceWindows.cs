@@ -2,9 +2,9 @@
 
 namespace Interface
 {
-    internal static class InterfaceWindows
+    public static class InterfaceWindows
     {
-        public static AdminWindow AdminWindow;
-        public static EmployeeWindow EmployeeWindow;
+        public static AdminWindow AdminWindow = new AdminWindow();
+        public static EmployeeWindow EmployeeWindow = new EmployeeWindow();
     }
 }

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Height="150" d:DesignWidth="900">
 
-    <Border CornerRadius="15" Background="#303041" Margin="10,5,10,5">
+    <Border x:Name="mainBorder" CornerRadius="15" Background="#303041" Margin="10,5,10,5">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -21,4 +21,35 @@
             <TextBlock x:Name="TextBlockTemporarilyResponsibleUser" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="TemporarilyResponsibleUser" VerticalAlignment="Top" Grid.Column="1"/>
         </Grid>
     </Border>
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter">
+            <BeginStoryboard>
+                <Storyboard>
+                    <ColorAnimation
+            Storyboard.TargetName="mainBorder"
+            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+            To="#323B4B">
+                        <ColorAnimation.EasingFunction>
+                            <ElasticEase EasingMode="EaseOut" Oscillations="0" Springiness="3" />
+                        </ColorAnimation.EasingFunction>
+                    </ColorAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave">
+            <BeginStoryboard>
+                <Storyboard>
+                    <ColorAnimation
+            Storyboard.TargetName="mainBorder"
+            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+            To="#303041">
+                        <ColorAnimation.EasingFunction>
+                            <ElasticEase EasingMode="EaseOut" Oscillations="0" Springiness="3" />
+                        </ColorAnimation.EasingFunction>
+                    </ColorAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
 </UserControl>

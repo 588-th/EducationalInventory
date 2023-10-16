@@ -18,9 +18,9 @@ namespace Interface.Items
 
         private void LoadData()
         {
-            User responsibleUser = Logic.DataBaseLogic.GetEntity<User>(_consumable.ResponsibleUserId);
-            User temporarilyResponsibleUser = Logic.DataBaseLogic.GetEntity<User>(_consumable.ResponsibleUserId);
-            ConsumableType consumableType = Logic.DataBaseLogic.GetEntity<ConsumableType>(_consumable.ConsumableTypeId);
+            User responsibleUser = Logic.DatabaseReader.GetEntity<User>(_consumable.ResponsibleUserId);
+            User temporarilyResponsibleUser = Logic.DatabaseReader.GetEntity<User>(_consumable.ResponsibleUserId);
+            ConsumableType consumableType = Logic.DatabaseReader.GetEntity<ConsumableType>(_consumable.ConsumableTypeId);
 
             //ImagePhoto. = 
             TextBlockName.Text = _consumable.Name;

@@ -42,26 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audience.cs" />
-    <Compile Include="ConsumableCharacteristics.cs" />
-    <Compile Include="Consumable.cs" />
-    <Compile Include="Developer.cs" />
+    <Compile Include="Entities\Audience.cs" />
+    <Compile Include="Entities\ConsumableCharacteristics.cs" />
+    <Compile Include="Entities\Consumable.cs" />
+    <Compile Include="Entities\Developer.cs" />
     <Compile Include="Entities.cs" />
-    <Compile Include="Equipment.cs" />
-    <Compile Include="HistoryAudienceEquipment.cs" />
-    <Compile Include="HistoryUserConsumable.cs" />
-    <Compile Include="HistoryUserEquipment.cs" />
-    <Compile Include="Inventory.cs" />
-    <Compile Include="NetworkSetting.cs" />
-    <Compile Include="Programm.cs" />
+    <Compile Include="Entities\Equipment.cs" />
+    <Compile Include="Entities\HistoryAudienceEquipment.cs" />
+    <Compile Include="Entities\HistoryUserConsumable.cs" />
+    <Compile Include="Entities\HistoryUserEquipment.cs" />
+    <Compile Include="Entities\Inventory.cs" />
+    <Compile Include="Entities\NetworkSetting.cs" />
+    <Compile Include="Entities\Programm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Route.cs" />
-    <Compile Include="Status.cs" />
-    <Compile Include="ConsumableType.cs" />
-    <Compile Include="EquipmentType.cs" />
-    <Compile Include="ModelType.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="ConsumableCharacteristicsValues.cs" />
+    <Compile Include="Entities\Route.cs" />
+    <Compile Include="Entities\Status.cs" />
+    <Compile Include="Entities\ConsumableType.cs" />
+    <Compile Include="Entities\EquipmentType.cs" />
+    <Compile Include="Entities\ModelType.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\ConsumableCharacteristicsValues.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

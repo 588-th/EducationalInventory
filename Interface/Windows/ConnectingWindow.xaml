@@ -1,0 +1,21 @@
+﻿<Window x:Class="Interface.Windows.ConnectingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:controls="clr-namespace:Interface.Controls"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Interface.Windows"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Height="250"
+        Width="300"
+        ResizeMode="NoResize"
+        Title="Connecting">
+
+    <Grid Background="#21212e">
+        <TextBlock HorizontalAlignment="Center" Margin="0,30,0,0" FontSize="32" Foreground="White" FontWeight="Bold" Text="Connecting" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlockError" Text="Error" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,75,0,0" Foreground="#ef0f41" FontSize="14" VerticalAlignment="Top" Visibility="Hidden"/>
+        <controls:Button x:Name="ButtonRetry" ControlContent="Retry" ControlCornerRadius="5" ControlFontSize="12" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" Visibility="Hidden" ControlFontWeight="Bold" ControlBackground="#323B4B" HorizontalAlignment="Center" Margin="97,149,97,0" VerticalAlignment="Top" Height="30" Width="100"/>
+        <TextBlock x:Name="TextBlockTimer" HorizontalAlignment="Center" Margin="0,0,0,10" Foreground="White" FontSize="14" VerticalAlignment="Bottom" Visibility="Visible"/>
+    </Grid>
+</Window>

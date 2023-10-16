@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization.cs" />
-    <Compile Include="DataBaseLogic.cs" />
+    <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="DatabaseModify.cs" />
+    <Compile Include="DatabaseReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

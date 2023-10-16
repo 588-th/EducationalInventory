@@ -19,7 +19,7 @@ namespace Interface.Items
 
         private void LoadData()
         {
-            ConsumableCharacteristics consumableCharacteristics = Logic.DataBaseLogic.GetEntity<ConsumableCharacteristics>(_consumableType.Id);
+            ConsumableCharacteristics consumableCharacteristics = Logic.DatabaseReader.GetEntity<ConsumableCharacteristics>(_consumableType.Id);
 
             TextBlockName.Text = _consumableType.Name;
             TextBlockConsumableCharacteristics.Text = consumableCharacteristics.Name;

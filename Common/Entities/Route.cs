@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common
 {
-    public class Status
+    [Table("Routes")]
+    public class Route
     {
         [Key]
         public int Id { get; set; }

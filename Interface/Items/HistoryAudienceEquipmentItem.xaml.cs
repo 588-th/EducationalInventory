@@ -18,8 +18,8 @@ namespace Interface.Items
 
         private void LoadData()
         {
-            Audience audience = Logic.DataBaseLogic.GetEntity<Audience>(_historyAudienceEquipment.AudienceId);
-            Equipment equipment = Logic.DataBaseLogic.GetEntity<Equipment>(_historyAudienceEquipment.EquipmentId);
+            Audience audience = Logic.DatabaseReader.GetEntity<Audience>(_historyAudienceEquipment.AudienceId);
+            Equipment equipment = Logic.DatabaseReader.GetEntity<Equipment>(_historyAudienceEquipment.EquipmentId);
 
             TextBlockAudience.Text = audience.Name;
             TextBlockEquipment.Text = equipment.Name;

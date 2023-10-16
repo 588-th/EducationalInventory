@@ -19,13 +19,14 @@ namespace Interface.Items
 
         private void LoadData()
         {
-            User responsibleUser = Logic.DataBaseLogic.GetEntity<User>(_audience.ResponsibleUserId);
-            User temporarilyResponsibleUser = Logic.DataBaseLogic.GetEntity<User>(_audience.ResponsibleUserId);
-
             TextBlockName.Text = _audience.Name;
             TextBlockShortName.Text = _audience.ShortName;
-            TextBlockResponsibleUser.Text = responsibleUser.FirstName + " " + responsibleUser.MiddleName;
-            TextBlockTemporarilyResponsibleUser.Text = temporarilyResponsibleUser.FirstName + " " + temporarilyResponsibleUser.MiddleName;
+
+            User responsibleUser = Logic.DatabaseReader.GetEntity<User>(_audience.ResponsibleUserId);
+            User temporarilyResponsibleUser = Logic.DatabaseReader.GetEntity<User>(_audience.ResponsibleUserId);
+
+            TextBlockResponsibleUser.Text = (_audience.ResponsibleUserId == -1) ? "" : responsibleUser.FirstName + " " + responsibleUser.MiddleName;
+            TextBlockTemporarilyResponsibleUser.Text = (_audience.ResponsibleUserId == -1) ? "" : temporarilyResponsibleUser.FirstName + " " + temporarilyResponsibleUser.MiddleName;
         }
     }
 }

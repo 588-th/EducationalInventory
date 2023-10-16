@@ -1,12 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common
 {
-    public class Route
+    [Table("ModelsTypes")]
+    public class ModelType
     {
         [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+        public string Code { get; set; }
     }
 }

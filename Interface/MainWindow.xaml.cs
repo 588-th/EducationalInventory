@@ -11,14 +11,14 @@ namespace Interface
         public MainWindow()
         {
             InitializeComponent();
-            OpenAuthorizationWindow();
-            Logic.DataBaseLogic.IsDataBasesExist();
+
+            OpenConnectingWindow();
         }
 
-        private void OpenAuthorizationWindow()
+        private void OpenConnectingWindow()
         {
-            AuthorizationWindow authorizationWindow = new AuthorizationWindow();
-            authorizationWindow.Show();
+            ConnectingWindow connectingWindow = new ConnectingWindow();
+            connectingWindow.Show();
             Close();
         }
     }

@@ -20,7 +20,7 @@ namespace Interface.Items
         {
             if (_consumableCharacteristics != null)
             {
-                ConsumableCharacteristicsValues consumableCharacteristicsValues = Logic.DataBaseLogic.GetEntity<ConsumableCharacteristicsValues>(_consumableCharacteristics.ConsumableCharacteristicsValuesId);
+                ConsumableCharacteristicsValues consumableCharacteristicsValues = Logic.DatabaseReader.GetEntity<ConsumableCharacteristicsValues>(_consumableCharacteristics.ConsumableCharacteristicsValuesId);
 
                 TextBlockName.Text = _consumableCharacteristics.Name;
                 TextBlockConsumableCharacteristicsValues.Text = consumableCharacteristicsValues.Name;

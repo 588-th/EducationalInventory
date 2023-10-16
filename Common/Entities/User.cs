@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common
 {
-    [Table("User")]
+    [Table("Users")]
     public class User
     {
         [Key]

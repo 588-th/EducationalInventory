@@ -81,6 +81,15 @@ namespace Interface.Controls
             set { SetValue(MousePressedMarginProperty, value); }
         }
 
+        public static readonly new DependencyProperty HorizontalContentAlignmentProperty =
+            DependencyProperty.Register("ControlHorizontalContentAlignment", typeof(HorizontalAlignment), typeof(Button), new PropertyMetadata(HorizontalAlignment.Center));
+
+        public HorizontalAlignment ControlHorizontalContentAlignment
+        {
+            get { return (HorizontalAlignment)GetValue(HorizontalContentAlignmentProperty); }
+            set { SetValue(HorizontalContentAlignmentProperty, value); }
+        }
+
         public event EventHandler Click;
 
         public Button()

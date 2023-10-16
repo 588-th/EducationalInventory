@@ -18,16 +18,16 @@ namespace Interface.Items
 
         private void LoadData()
         {
-            Audience audience = Logic.DataBaseLogic.GetEntity<Audience>(_equipment.AudienceId);
-            EquipmentType equipmentType = Logic.DataBaseLogic.GetEntity<EquipmentType>(_equipment.EquipmentTypeId);
-            ModelType modelType = Logic.DataBaseLogic.GetEntity<ModelType>(_equipment.ModelTypeId);
-            User responsibleUser = Logic.DataBaseLogic.GetEntity<User>(_equipment.ResponsibleUserId);
-            User TemporarilyResponsibleUser = Logic.DataBaseLogic.GetEntity<User>(_equipment.TemporarilyResponsibleUserId);
-            Route route = Logic.DataBaseLogic.GetEntity<Route>(_equipment.RouteId);
-            Status status = Logic.DataBaseLogic.GetEntity<Status>(_equipment.StatusId);
-            NetworkSetting networkSetting = Logic.DataBaseLogic.GetEntity<NetworkSetting>(_equipment.NetworkSettingsId);
-            Programm programm = Logic.DataBaseLogic.GetEntity<Programm>(_equipment.ProgrammId);
-            Consumable consumable = Logic.DataBaseLogic.GetEntity<Consumable>(_equipment.ConsumableId);
+            Audience audience = Logic.DatabaseReader.GetEntity<Audience>(_equipment.AudienceId);
+            EquipmentType equipmentType = Logic.DatabaseReader.GetEntity<EquipmentType>(_equipment.EquipmentTypeId);
+            ModelType modelType = Logic.DatabaseReader.GetEntity<ModelType>(_equipment.ModelTypeId);
+            User responsibleUser = Logic.DatabaseReader.GetEntity<User>(_equipment.ResponsibleUserId);
+            User TemporarilyResponsibleUser = Logic.DatabaseReader.GetEntity<User>(_equipment.TemporarilyResponsibleUserId);
+            Route route = Logic.DatabaseReader.GetEntity<Route>(_equipment.RouteId);
+            Status status = Logic.DatabaseReader.GetEntity<Status>(_equipment.StatusId);
+            NetworkSetting networkSetting = Logic.DatabaseReader.GetEntity<NetworkSetting>(_equipment.NetworkSettingsId);
+            Programm programm = Logic.DatabaseReader.GetEntity<Programm>(_equipment.ProgrammId);
+            Consumable consumable = Logic.DatabaseReader.GetEntity<Consumable>(_equipment.ConsumableId);
 
 
             // ImagePhoto. =

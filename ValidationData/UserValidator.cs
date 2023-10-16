@@ -188,12 +188,12 @@ namespace ValidationData
                 return false;
             }
 
-            if (phoneNumber.Length != 11)
+            if (phoneNumber.Length != 12)
             {
                 return false;
             }
 
-            if (phoneNumber[0] != '8')
+            if (phoneNumber[0] != '+')
             {
                 return false;
             }
@@ -225,7 +225,7 @@ namespace ValidationData
         /// <returns>True if the address is valid, otherwise false.</returns>
         public static bool ValidateAddress(string address)
         {
-            string[] parts = address.Split(',');
+            string[] parts = address.Split(' ');
 
             if (parts.Length < 3)
             {

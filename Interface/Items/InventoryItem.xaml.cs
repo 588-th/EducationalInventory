@@ -18,8 +18,8 @@ namespace Interface.Items
 
         private void LoadData()
         {
-            User user = Logic.DataBaseLogic.GetEntity<User>(_inventory.UserId);
-            Equipment equipment = Logic.DataBaseLogic.GetEntity<Equipment>(_inventory.EquipmentId);
+            User user = Logic.DatabaseReader.GetEntity<User>(_inventory.UserId);
+            Equipment equipment = Logic.DatabaseReader.GetEntity<Equipment>(_inventory.EquipmentId);
 
             TextBlockName.Text = _inventory.Name;
             TextBlockStartDate.Text = _inventory.StartDate;

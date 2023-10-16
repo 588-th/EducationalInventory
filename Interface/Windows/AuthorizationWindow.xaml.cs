@@ -7,8 +7,8 @@ namespace Interface.Windows
         public AuthorizationWindow()
         {
             InitializeComponent();
-
             ButtonAuthorization.Click += (_, __) => ButtonAuthorization_Click();
+            Closing += (_, __) => Application.Current.Shutdown();
         }
 
         private void ButtonAuthorization_Click()
@@ -40,16 +40,12 @@ namespace Interface.Windows
 
         private void OpenAdminWindow()
         {
-            AdminWindow adminWindow = new AdminWindow();
-            InterfaceWindows.AdminWindow = adminWindow;
             InterfaceWindows.AdminWindow.Show();
             Hide();
         }
 
         private void OpenEmployeeWindow()
         {
-            EmployeeWindow employeeWindow = new EmployeeWindow();
-            InterfaceWindows.EmployeeWindow = employeeWindow;
             InterfaceWindows.EmployeeWindow.Show();
             Hide();
         }
