@@ -1,8 +1,13 @@
 ﻿using Common;
 using Logic;
-using System.Collections.Generic;
+using Microsoft.Win32;
+using System;
+using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Interface.Pages
 {
@@ -12,101 +17,235 @@ namespace Interface.Pages
     public partial class ConsumableEdit : Page
     {
         private Consumable _consumable;
-        public ConsumableEdit()
-        {
-            InitializeComponent();
-            InitializeUI();
-            InitializeButtons();
-        }
 
         public ConsumableEdit(Consumable consumable)
         {
             InitializeComponent();
             _consumable = consumable;
+
+            ButtonAdd.IsEnabled = false;
+            ButtonUpdate.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Update);
+            ButtonDelete.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Delete);
+
+            ImagePhoto.MouseUp += (_, __) => SelectImage();
+
             InitializeUI();
-            InitializeButtons();
+        }
+
+        public ConsumableEdit()
+        {
+            InitializeComponent();
+
+            ButtonAdd.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Add);
+            ButtonUpdate.IsEnabled = false;
+            ButtonDelete.IsEnabled = false;
+
+            ImagePhoto.MouseUp += (_, __) => SelectImage();
+
+            InitializeUI();
+        }
+
+        private void SelectImage()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif|All Files|*.*"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    string imagePath = openFileDialog.FileName;
+
+                    BitmapImage bitmapImage = new BitmapImage(new Uri(imagePath));
+                    ImagePhoto.Source = bitmapImage;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading the selected image: " + ex.Message);
+                }
+            }
         }
 
         private void InitializeUI()
         {
             if (_consumable != null)
             {
-                Consumable responsibleUser = GetEntity<Consumable>(_consumable.ResponsibleUserId);
-                Consumable temporarilyResponsibleUser = GetEntity<Consumable>(_consumable.TemporarilyResponsibleUserId);
-                Consumable consumableType = GetEntity<Consumable>(_consumable.ConsumableTypeId);
-
-                PopulateUserComboBoxes();
-                TextBoxName.Text = _consumable.Name;
-                TextBoxDescription.Text = _consumable.Description;
-                TextBoxReceiptDate.Text = _consumable.ReceiptDate;
-                TextBoxPhoto.Text = _consumable.Photo;
-                TextBoxCount.Text = _consumable.Count.ToString();
-                ComboBoxResponsibleUser.SelectedItem = responsibleUser.Name;
-                ComboBoxTemporarilyResponsibleUser.SelectedItem = temporarilyResponsibleUser.Name;
-                ComboBoxConsumableType.SelectedItem = consumableType.Name;
+                PopulateExistData();
             }
+            PopulateComboBoxes();
         }
 
-        private void InitializeButtons()
+        private void PopulateExistData()
         {
-            ButtonAdd.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Add);
-            ButtonUpdate.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Update);
-            ButtonDelete.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Delete);
+            TextBoxName.Text = _consumable.Name;
+            TextBoxDescription.Text = _consumable.Description;
+            TextBoxReceiptDate.Text = _consumable.ReceiptDate;
+            ImagePhoto.Source = ByteToImage();
+            TextBoxCount.Text = _consumable.Count.ToString();
+
+            User responsibleUser = DatabaseReader.GetEntity<User>(_consumable.ResponsibleUserId);
+            User temporarilyResponsibleUser = DatabaseReader.GetEntity<User>(_consumable.TemporarilyResponsibleUserId);
+            ConsumableType consumableType = DatabaseReader.GetEntity<ConsumableType>(_consumable.ConsumableTypeId);
+
+            ComboBoxResponsibleUser.SelectedItem = responsibleUser?.SecondName;
+            ComboBoxTemporarilyResponsibleUser.SelectedItem = temporarilyResponsibleUser?.SecondName;
+            ComboBoxConsumableType.SelectedItem = consumableType?.Name;
         }
 
-        private void PopulateUserComboBoxes()
+        private void PopulateComboBoxes()
         {
-            var consumable = GetEntityList<Consumable>("Consumable");
-            ComboBoxResponsibleUser.ItemsSource = consumable.Select(c => c.Name);
-            ComboBoxTemporarilyResponsibleUser.ItemsSource = consumable.Select(c => c.Name);
-            ComboBoxConsumableType.ItemsSource = consumable.Select(c => c.Name);
+            var users = DatabaseReader.GetEntityList("User").OfType<User>().ToList();
+            var consumableTypes = DatabaseReader.GetEntityList("ConsumableType").OfType<ConsumableType>().ToList();
+
+            ComboBoxResponsibleUser.ItemsSource = users.Select(c => c.SecondName);
+            ComboBoxTemporarilyResponsibleUser.ItemsSource = users.Select(c => c.SecondName);
+            ComboBoxConsumableType.ItemsSource = consumableTypes.Select(c => c.Name);
         }
 
-        private void ModifyAudience(DatabaseModify.Action action)
+        private void ModifyEntity(DatabaseModify.Action action)
         {
-            int responsibleUserId = GetIdFromComboBox(ComboBoxResponsibleUser);
-            int temporarilyResponsibleUserId = GetIdFromComboBox(ComboBoxTemporarilyResponsibleUser);
-            int consumableTypeId = GetIdFromComboBox(ComboBoxConsumableType);
+            var consumable = _consumable ?? new Consumable();
 
-            if (responsibleUserId == 0 || temporarilyResponsibleUserId == 0 || consumableTypeId == 0)
+            string name = TextBoxName.Text.Trim();
+            string description = TextBoxDescription.Text.Trim();
+            string receiptDate = TextBoxReceiptDate.Text.Trim();
+
+            if (string.IsNullOrEmpty(name))
             {
-                TextBlockError.Text = "Empty value";
-                TextBlockError.Visibility = System.Windows.Visibility.Visible;
+                ShowError("Empty name");
+                return;
             }
 
-            var consumables = _consumable ?? new Consumable();
+            consumable.Name = name;
+            consumable.Description = description;
+            consumable.ReceiptDate = receiptDate;
+            consumable.Photo = ImageToByte();
 
-            consumables.Name = TextBoxName.Text;
-            consumables.Description = TextBoxDescription.Text;
-            consumables.ReceiptDate = TextBoxReceiptDate.Text;
-            consumables.Photo = TextBoxReceiptDate.Text;
-            consumables.Count = int.Parse(TextBoxCount.Text);
-            consumables.ResponsibleUserId = responsibleUserId;
-            consumables.TemporarilyResponsibleUserId = temporarilyResponsibleUserId;
-            consumables.ConsumableTypeId = consumableTypeId;
+            if (int.TryParse(TextBoxCount.Text, out int count))
+            {
+                consumable.Count = count;
+            }
+            else
+            {
+                ShowError("Invalid count");
+                return;
+            }
 
-            var (result, error) = DatabaseModify.ModifyEntity(consumables, action);
+            consumable.ResponsibleUserId = GetIdFromComboBoxUser(ComboBoxResponsibleUser);
+            consumable.TemporarilyResponsibleUserId = GetIdFromComboBoxUser(ComboBoxTemporarilyResponsibleUser);
+            consumable.ConsumableTypeId = GetIdFromComboBoxConsumableType(ComboBoxConsumableType);
 
-            TextBlockError.Text = result ? "" : error;
-            TextBlockError.Visibility = result ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
+            if (action != DatabaseModify.Action.Delete && consumable.ResponsibleUserId != -1)
+            {
+                CreateAndAddHistoryUserConsumable(consumable);
+            }
+
+            if (action == DatabaseModify.Action.Delete)
+            {
+                Windows.MessageBox messageBox = new Windows.MessageBox("Delete object", "Are you sure you want to delete the record?");
+                if (messageBox.ShowDialog() == false)
+                {
+                    return;
+                }
+            }
+
+            var (result, error) = DatabaseModify.ModifyEntity(consumable, action);
+
+            if (!result)
+            {
+                ShowError(error);
+            }
+            else
+            {
+                ClosePage();
+            }
         }
 
-        private int GetIdFromComboBox(ComboBox comboBox)
+        private void CreateAndAddHistoryUserConsumable(Consumable consumable)
         {
-            string selectedName = comboBox.SelectedItem as string;
-            var consumableCharacteristics = GetEntityList<ConsumableCharacteristics>("ConsumableCharacteristics");
-            var consumableCharacteristic = consumableCharacteristics.FirstOrDefault(u => u.Name == selectedName);
-            return consumableCharacteristic != null ? consumableCharacteristic.Id : 0;
+            HistoryUserConsumable historyUserConsumable = new HistoryUserConsumable();
+            User user = DatabaseReader.GetEntity<User>(consumable.ResponsibleUserId);
+            historyUserConsumable.User = user.FirstName + " " + user.SecondName;
+            historyUserConsumable.Consumable = consumable.Name;
+            historyUserConsumable.Date = DateTime.Now.ToString();
+
+            DatabaseModify.ModifyEntity(historyUserConsumable, DatabaseModify.Action.Add);
         }
 
-        private TEntity GetEntity<TEntity>(int id) where TEntity : class
+
+        private byte[] ImageToByte()
         {
-            return DatabaseReader.GetEntity<TEntity>(id);
+            BitmapSource bitmapSource = (BitmapSource)ImagePhoto.Source;
+
+            byte[] imageBytes;
+
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                BitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+                encoder.Save(memoryStream);
+                imageBytes = memoryStream.ToArray();
+            }
+
+            return imageBytes;
         }
 
-        private List<TEntity> GetEntityList<TEntity>(string entityName) where TEntity : class
+        private ImageSource ByteToImage()
         {
-            return DatabaseReader.GetEntityList(entityName).OfType<TEntity>().ToList();
+            if (_consumable.Photo != null && _consumable.Photo.Length > 0)
+            {
+                using (MemoryStream memoryStream = new MemoryStream(_consumable.Photo))
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.StreamSource = memoryStream;
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.EndInit();
+
+                    return bitmapImage;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private void ShowError(string error)
+        {
+            TextBlockError.Text = error;
+            TextBlockError.Visibility =Visibility.Visible;
+        }
+
+        private void ClosePage()
+        {
+            InterfaceWindows.AdminWindow.ClosePage();
+            InterfaceWindows.AdminWindow.UpdateInformation();
+            InterfaceWindows.AdminWindow.HideBackButton();
+        }
+
+        private int GetIdFromComboBoxUser(ComboBox comboBox)
+        {
+            if (!(comboBox.SelectedItem is string selectedName))
+            {
+                return -1;
+            }
+            var users = DatabaseReader.GetEntityList("User").OfType<User>().ToList();
+            var user = users.FirstOrDefault(u => u.SecondName == selectedName);
+            return user != null ? user.Id : -1;
+        }
+
+        private int GetIdFromComboBoxConsumableType(ComboBox comboBox)
+        {
+            if (!(comboBox.SelectedItem is string selectedName))
+            {
+                return -1;
+            }
+            var consumableTypes = DatabaseReader.GetEntityList("ConsumableType").OfType<ConsumableType>().ToList();
+            var consumableType = consumableTypes.FirstOrDefault(u => u.Name == selectedName);
+            return consumableType != null ? consumableType.Id : -1;
         }
     }
 }

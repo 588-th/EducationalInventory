@@ -15,7 +15,7 @@ namespace ValidationData
             Dictionary<Func<string, bool>, string> validationChecks = new Dictionary<Func<string, bool>, string>
             {
                 { ValidateReceiptDate, "Invalid inventory number format" },
-                { ValidateCount, "Invalid cost format" }
+                { ValidateCount, "Invalid count format" }
             };
 
             foreach (var validationCheck in validationChecks)
@@ -64,10 +64,12 @@ namespace ValidationData
         {
             if (int.TryParse(count, out _))
             {
+                return true;
+            }
+            else
+            {
                 return false;
             }
-
-            return true;
         }
     }
 }

@@ -24,8 +24,8 @@ namespace Interface.Items
             TextBlockName.Text = _inventory.Name;
             TextBlockStartDate.Text = _inventory.StartDate;
             TextBlockEndDate.Text = _inventory.EndDate;
-            TextBlockUser.Text = user.FirstName + " " + user.MiddleName;
-            TextBlockEquipment.Text = equipment.Name;
+            TextBlockUser.Text = user == null ? "" : user.FirstName + " " + user.MiddleName;
+            TextBlockEquipment.Text = equipment == null ? "" : equipment.Name;
         }
     }
 }

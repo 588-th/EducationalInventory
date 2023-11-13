@@ -12,13 +12,19 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Name" VerticalAlignment="Top"/>
-            <TextBlock x:Name="TextBlockShortName" HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ShortName" VerticalAlignment="Top" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Name" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Short Name" VerticalAlignment="Top" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Responsible User" VerticalAlignment="Top" Grid.Column="2"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Temporarily Responsible User" VerticalAlignment="Top" Grid.Column="3"/>
 
-            <TextBlock x:Name="TextBlockResponsibleUser" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ResponsibleUser" VerticalAlignment="Top"/>
-            <TextBlock x:Name="TextBlockTemporarilyResponsibleUser" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="TemporarilyResponsibleUser" VerticalAlignment="Top" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TextBlockShortName" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockResponsibleUser" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Column="2"/>
+            <TextBlock x:Name="TextBlockTemporarilyResponsibleUser" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Column="3"/>
         </Grid>
     </Border>
 

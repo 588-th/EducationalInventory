@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Common;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -34,6 +35,14 @@ namespace DataBaseServer
             {
                 DbSet<TEntity> entitySet = dbContext.Set<TEntity>();
                 return entitySet.Find(id);
+            }
+        }
+
+        public static User GetUser(string login)
+        {
+            using (var dbContext = new ServerInventoryContext())
+            {
+                return dbContext.Users.FirstOrDefault(x => x.Login == login);
             }
         }
     }

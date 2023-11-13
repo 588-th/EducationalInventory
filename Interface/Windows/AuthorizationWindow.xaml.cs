@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Common;
+using System.Windows;
 
 namespace Interface.Windows
 {
@@ -16,7 +17,7 @@ namespace Interface.Windows
             string login = TextBoxLogin.Text;
             string password = PasswordBoxPassword.Password;
 
-            (bool isUserValid, string error, string role) = Logic.Authorization.AuthorizeUser(login, password);
+            (bool isUserValid, string error, User user) = Logic.Authorization.AuthorizeUser(login, password);
 
             if (!isUserValid)
             {
@@ -26,13 +27,21 @@ namespace Interface.Windows
 
             TextBlockError.Visibility = Visibility.Hidden;
 
-            if (role == "Administrator")
+            MainWindow.AuthUser = user;
+
+            if (user == null)
             {
                 OpenAdminWindow();
                 return;
             }
 
-            if (role == "Employee")
+            if (user.Role == "Administrator")
+            {
+                OpenAdminWindow();
+                return;
+            }
+
+            if (user.Role == "Employee")
             {
                 OpenEmployeeWindow();
             }

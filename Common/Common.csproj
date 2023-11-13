@@ -48,7 +48,7 @@
     <Compile Include="Entities\Developer.cs" />
     <Compile Include="Entities.cs" />
     <Compile Include="Entities\Equipment.cs" />
-    <Compile Include="Entities\HistoryAudienceEquipment.cs" />
+    <Compile Include="Entities\HistoryInventoryEquipment.cs" />
     <Compile Include="Entities\HistoryUserConsumable.cs" />
     <Compile Include="Entities\HistoryUserEquipment.cs" />
     <Compile Include="Entities\Inventory.cs" />

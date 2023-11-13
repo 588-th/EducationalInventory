@@ -13,9 +13,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Name" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Consumable Characteristics Values" VerticalAlignment="Top" Grid.Column="1"/>
 
-            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Name" VerticalAlignment="Center"/>
-            <TextBlock x:Name="TextBlockConsumableCharacteristicsValues" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ConsumableCharacteristicsValues" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TextBlockConsumableCharacteristicsValues" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Column="1"/>
         </Grid>
     </Border>
 

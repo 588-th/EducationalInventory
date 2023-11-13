@@ -5,21 +5,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Interface.Items"
              mc:Ignorable="d" 
-             Height="350" d:DesignWidth="900">
+             Height="200" d:DesignWidth="900">
 
     <Border x:Name="mainBorder" CornerRadius="15" Background="#303041" Margin="10,5,10,5">
         <Grid>
-            <Image x:Name="ImagePhoto" HorizontalAlignment="Left" Height="149" Margin="10,10,0,0" VerticalAlignment="Top" Width="150"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Left" Margin="214,11,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Name" VerticalAlignment="Top"/>
-            <TextBlock x:Name="TextBlockDescription" HorizontalAlignment="Left" Margin="214,56,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Description" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Name" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Description" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Receipt Date" VerticalAlignment="Top" Grid.Row="0" Grid.Column="3"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Responsible User" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Temporarily Responsible User" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Count" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Consumable Type" VerticalAlignment="Top" Grid.Row="1" Grid.Column="3"/>
 
-            <TextBlock x:Name="TextBlockReceiptDate" HorizontalAlignment="Left" Margin="424,200,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ReceiptDate" VerticalAlignment="Top"/>
-            <TextBlock x:Name="TextBlockResponsibleUser" HorizontalAlignment="Left" Margin="10,200,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ResponsibleUser" VerticalAlignment="Top"/>
-            <TextBlock x:Name="TextBlockTemporarilyResponsibleUser" HorizontalAlignment="Left" Margin="10,259,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="TemporarilyResponsibleUser" VerticalAlignment="Top"/>
-
-            <TextBlock x:Name="TextBlockCount" HorizontalAlignment="Left" Margin="759,10,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Count" VerticalAlignment="Top"/>
-            <TextBlock x:Name="TextBlockConsumableType" HorizontalAlignment="Left" Margin="424,259,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ConsumableType" VerticalAlignment="Top"/>
+            <Image x:Name="ImagePhoto" Source="/Images/Placeholder.png" HorizontalAlignment="Center" Height="80" VerticalAlignment="Center" Width="80" Grid.Row="0" Grid.Column="0"/>
+            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockDescription" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2"/>
+            <TextBlock x:Name="TextBlockReceiptDate" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3"/>
+            <TextBlock x:Name="TextBlockResponsibleUser" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+            <TextBlock x:Name="TextBlockTemporarilyResponsibleUser" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockCount" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2"/>
+            <TextBlock x:Name="TextBlockConsumableType" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="1" Grid.Column="3"/>
         </Grid>
     </Border>
 

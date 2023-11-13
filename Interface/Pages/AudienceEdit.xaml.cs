@@ -1,6 +1,7 @@
 ﻿using Common;
 using Logic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Interface.Pages
@@ -18,8 +19,8 @@ namespace Interface.Pages
             _audience = audience;
 
             ButtonAdd.IsEnabled = false;
-            ButtonUpdate.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Update);
-            ButtonDelete.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Delete);
+            ButtonUpdate.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Update);
+            ButtonDelete.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Delete);
 
             InitializeUI();
         }
@@ -28,7 +29,7 @@ namespace Interface.Pages
         {
             InitializeComponent();
 
-            ButtonAdd.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Add);
+            ButtonAdd.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Add);
             ButtonUpdate.IsEnabled = false;
             ButtonDelete.IsEnabled = false;
 
@@ -39,31 +40,32 @@ namespace Interface.Pages
         {
             if (_audience != null)
             {
-                PopulateTextBoxes();
-                PopulateComboBoxes();
+                PopulateExistData();
             }
+            PopulateComboBoxes();
         }
 
-        private void PopulateTextBoxes()
+        private void PopulateExistData()
         {
             TextBoxName.Text = _audience.Name;
             TextBoxShortName.Text = _audience.ShortName;
+
+            User responsibleUser = DatabaseReader.GetEntity<User>(_audience.ResponsibleUserId);
+            User temporarilyResponsibleUser = DatabaseReader.GetEntity<User>(_audience.ResponsibleUserId);
+
+            ComboBoxResponsibleUser.SelectedItem = responsibleUser?.SecondName;
+            ComboBoxTemporarilyResponsibleUser.SelectedItem = temporarilyResponsibleUser?.SecondName;
         }
 
         private void PopulateComboBoxes()
         {
-            User responsibleUser = DatabaseReader.GetEntity<User>(_audience.ResponsibleUserId);
-            User temporarilyResponsibleUser = DatabaseReader.GetEntity<User>(_audience.ResponsibleUserId);
-
             var users = DatabaseReader.GetEntityList("User").OfType<User>().ToList();
 
             ComboBoxResponsibleUser.ItemsSource = users.Select(user => user.SecondName);
             ComboBoxTemporarilyResponsibleUser.ItemsSource = users.Select(user => user.SecondName);
-            ComboBoxResponsibleUser.SelectedItem = responsibleUser == null ? null : responsibleUser.SecondName;
-            ComboBoxTemporarilyResponsibleUser.Text = temporarilyResponsibleUser == null ? null : temporarilyResponsibleUser.SecondName;
         }
 
-        private void ModifyAudience(DatabaseModify.Action action)
+        private void ModifyEntity(DatabaseModify.Action action)
         {
             var audience = _audience ?? new Audience();
 
@@ -76,6 +78,15 @@ namespace Interface.Pages
             {
                 ShowError("Empty name");
                 return;
+            }
+
+            if (action == DatabaseModify.Action.Delete)
+            {
+                Windows.MessageBox messageBox = new Windows.MessageBox("Delete object", "Are you sure you want to delete the record?");
+                if (messageBox.ShowDialog() == false)
+                {
+                    return;
+                }
             }
 
             var (result, error) = DatabaseModify.ModifyEntity(audience, action);
@@ -93,7 +104,7 @@ namespace Interface.Pages
         private void ShowError(string error)
         {
             TextBlockError.Text = error;
-            TextBlockError.Visibility = System.Windows.Visibility.Visible;
+            TextBlockError.Visibility = Visibility.Visible;
         }
 
         private void ClosePage()

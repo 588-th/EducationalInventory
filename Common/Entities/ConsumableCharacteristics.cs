@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common
 {
-    [Table("ConsumablesCharacteristics")]
+    [Table("ConsumableCharacteristics")]
     public class ConsumableCharacteristics
     {
         [Key]

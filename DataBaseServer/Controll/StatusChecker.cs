@@ -57,7 +57,7 @@ namespace DataBaseServer
             {
                 using (var dbContext = new ServerInventoryContext())
                 {
-                    dbContext.Users.First();
+                    dbContext.Users.FirstOrDefault();
                     return true;
                 }
             }

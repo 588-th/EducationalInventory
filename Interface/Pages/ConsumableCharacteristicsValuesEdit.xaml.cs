@@ -1,5 +1,6 @@
 ﻿using Common;
 using Logic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Interface.Pages
@@ -11,45 +12,86 @@ namespace Interface.Pages
     {
         private ConsumableCharacteristicsValues _consumableCharacteristicsValues;
 
-        public ConsumableCharacteristicsValuesEdit()
-        {
-            InitializeComponent();
-            InitializeUI();
-            InitializeButtons();
-        }
         public ConsumableCharacteristicsValuesEdit(ConsumableCharacteristicsValues consumableCharacteristicsValues)
         {
             InitializeComponent();
             _consumableCharacteristicsValues = consumableCharacteristicsValues;
+
+            ButtonAdd.IsEnabled = false;
+            ButtonUpdate.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Update);
+            ButtonDelete.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Delete);
+
             InitializeUI();
-            InitializeButtons();
+        }
+
+        public ConsumableCharacteristicsValuesEdit()
+        {
+            InitializeComponent();
+
+            ButtonAdd.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Add);
+            ButtonUpdate.IsEnabled = false;
+            ButtonDelete.IsEnabled = false;
+
+            InitializeUI();
         }
 
         private void InitializeUI()
         {
             if (_consumableCharacteristicsValues != null)
             {
-                TextBoxName.Text = _consumableCharacteristicsValues.Name;
+                PopulateExistData();
             }
         }
 
-        private void InitializeButtons()
+        private void PopulateExistData()
         {
-            ButtonAdd.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Add);
-            ButtonUpdate.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Update);
-            ButtonDelete.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Delete);
+            TextBoxName.Text = _consumableCharacteristicsValues.Name;
         }
 
-        private void ModifyAudience(DatabaseModify.Action action)
+        private void ModifyEntity(DatabaseModify.Action action)
         {
             var consumableCharacteristicsValues = _consumableCharacteristicsValues ?? new ConsumableCharacteristicsValues();
 
             consumableCharacteristicsValues.Name = TextBoxName.Text;
 
+            if (consumableCharacteristicsValues.Name == "")
+            {
+                ShowError("Empty name");
+                return;
+            }
+
+            if (action == DatabaseModify.Action.Delete)
+            {
+                Windows.MessageBox messageBox = new Windows.MessageBox("Delete object", "Are you sure you want to delete the record?");
+                if (messageBox.ShowDialog() == false)
+                {
+                    return;
+                }
+            }
+
             var (result, error) = DatabaseModify.ModifyEntity(consumableCharacteristicsValues, action);
 
-            TextBlockError.Text = result ? "" : error;
-            TextBlockError.Visibility = result ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
+            if (!result)
+            {
+                ShowError(error);
+            }
+            else
+            {
+                ClosePage();
+            }
+        }
+
+        private void ShowError(string error)
+        {
+            TextBlockError.Text = error;
+            TextBlockError.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void ClosePage()
+        {
+            InterfaceWindows.AdminWindow.ClosePage();
+            InterfaceWindows.AdminWindow.UpdateInformation();
+            InterfaceWindows.AdminWindow.HideBackButton();
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿<Window x:Class="Interface.Windows.AddComment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Interface.Windows"
+        xmlns:controls="clr-namespace:Interface.Controls"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="AddComment" Height="200" Width="350"
+        ResizeMode="NoResize">
+
+    <Grid Background="#11111e">
+        <Border Margin="10,10,10,10" CornerRadius="15" Background="#21212e">
+            <Grid>
+                <TextBlock HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="20" Foreground="White" FontWeight="Bold" Text="Comment" VerticalAlignment="Top"/>
+                <TextBox x:Name="TextBoxComment" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#303041" Foreground="#B0B7C3" Width="250" Height="25"/>
+                <controls:Button x:Name="ButtonAdd" Margin="0,105,0,0" ControlContent="Add" ControlCornerRadius="5" ControlFontSize="12" ControlMouseOverColor="#3EC965" ControlMousePressedMargin="2" ControlForeground="White" ControlFontWeight="Bold" ControlBackground="#323B4B" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="76"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

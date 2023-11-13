@@ -22,7 +22,7 @@ namespace Interface.Items
             ConsumableCharacteristics consumableCharacteristics = Logic.DatabaseReader.GetEntity<ConsumableCharacteristics>(_consumableType.Id);
 
             TextBlockName.Text = _consumableType.Name;
-            TextBlockConsumableCharacteristics.Text = consumableCharacteristics.Name;
+            TextBlockConsumableCharacteristics.Text = consumableCharacteristics == null ? "" : consumableCharacteristics.Name;
         }
     }
 }

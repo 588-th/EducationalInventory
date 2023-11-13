@@ -59,7 +59,7 @@ namespace ValidationData
         /// <returns>True if the cost is a valid integer, otherwise false.</returns>
         public static bool ValidateCost(string cost)
         {
-            if (!int.TryParse(cost, out _))
+            if (!decimal.TryParse(cost, out _))
             {
                 return false;
             }

@@ -1,5 +1,6 @@
 ﻿using Common;
 using Logic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Interface.Pages
@@ -12,44 +13,54 @@ namespace Interface.Pages
         {
             InitializeComponent();
             _user = user;
+
+            ButtonAdd.IsEnabled = false;
+            ButtonUpdate.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Update);
+            ButtonDelete.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Delete);
+
             InitializeUI();
-            InitializeButtons();
         }
 
         public UserEdit()
         {
             InitializeComponent();
+
+            ButtonAdd.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Add);
+            ButtonUpdate.IsEnabled = false;
+            ButtonDelete.IsEnabled = false;
+
             InitializeUI();
-            InitializeButtons();
         }
 
         private void InitializeUI()
         {
-            ComboBoxRole.Items.Add("Administrator");
-            ComboBoxRole.Items.Add("Employee");
-
             if (_user != null)
             {
-                TextBoxLogin.Text = _user.Login;
-                TextBoxPassword.Text = _user.Password;
-                ComboBoxRole.SelectedItem = _user.Role;
-                TextBoxFirstName.Text = _user.FirstName;
-                TextBoxSecondName.Text = _user.SecondName;
-                TextBoxMiddleName.Text = _user.MiddleName;
-                TextBoxPhone.Text = _user.Phone;
-                TextBoxEmail.Text = _user.Email;
-                TextBoxAddress.Text = _user.Address;
+                PopulateExistData();
             }
+            PopulateComboBoxes();
         }
 
-        private void InitializeButtons()
+        private void PopulateExistData()
         {
-            ButtonAdd.Click += (_, __) => ModifyUser(DatabaseModify.Action.Add);
-            ButtonUpdate.Click += (_, __) => ModifyUser(DatabaseModify.Action.Update);
-            ButtonDelete.Click += (_, __) => ModifyUser(DatabaseModify.Action.Delete);
+            TextBoxLogin.Text = _user.Login;
+            TextBoxPassword.Text = _user.Password;
+            ComboBoxRole.SelectedItem = _user.Role;
+            TextBoxFirstName.Text = _user.FirstName;
+            TextBoxSecondName.Text = _user.SecondName;
+            TextBoxMiddleName.Text = _user.MiddleName;
+            TextBoxPhone.Text = _user.Phone;
+            TextBoxEmail.Text = _user.Email;
+            TextBoxAddress.Text = _user.Address;
         }
 
-        private void ModifyUser(DatabaseModify.Action action)
+        private void PopulateComboBoxes()
+        {
+            ComboBoxRole.Items.Add("Administrator");
+            ComboBoxRole.Items.Add("Employee");
+        }
+
+        private void ModifyEntity(DatabaseModify.Action action)
         {
             var user = _user ?? new User();
 
@@ -63,10 +74,38 @@ namespace Interface.Pages
             user.Email = TextBoxEmail.Text;
             user.Address = TextBoxAddress.Text;
 
+            if (action == DatabaseModify.Action.Delete)
+            {
+                Windows.MessageBox messageBox = new Windows.MessageBox("Delete object", "Are you sure you want to delete the record?");
+                if (messageBox.ShowDialog() == false)
+                {
+                    return;
+                }
+            }
+
             var (result, error) = DatabaseModify.ModifyEntity(user, action);
 
-            TextBlockError.Text = result ? "" : error;
-            TextBlockError.Visibility = result ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
+            if (!result)
+            {
+                ShowError(error);
+            }
+            else
+            {
+                ClosePage();
+            }
+        }
+
+        private void ShowError(string error)
+        {
+            TextBlockError.Text = error;
+            TextBlockError.Visibility = Visibility.Visible;
+        }
+
+        private void ClosePage()
+        {
+            InterfaceWindows.AdminWindow.ClosePage();
+            InterfaceWindows.AdminWindow.UpdateInformation();
+            InterfaceWindows.AdminWindow.HideBackButton();
         }
     }
 }

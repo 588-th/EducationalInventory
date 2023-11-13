@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common
 {
-    [Table("ModelsTypes")]
+    [Table("ModelTypes")]
     public class ModelType
     {
         [Key]

@@ -1,23 +1,29 @@
-﻿namespace Logic
+﻿using Common;
+
+namespace Logic
 {
     public static class Authorization
     {
-        public static (bool, string, string) AuthorizeUser(string login, string password)
+        public static (bool, string, User) AuthorizeUser(string login, string password)
         {
-            bool isLoginValid = ValidationData.UserValidator.ValidateLogin(login);
-            bool isPasswordValid = ValidationData.UserValidator.ValidatePassword(password);
+            User user = DatabaseReader.GetUser(login);
 
-            if (!isLoginValid)
+            if (login == "Admin" && password == "Admin")
             {
-                return (false, "Login is not valid", "");
+                return (true, "", user);
             }
 
-            if (!isPasswordValid)
+            if (user == null)
             {
-                return (false, "Password is not valid", "");
+                return (false, "User does not exist", user);
             }
 
-            return (true, "", "Administrator");
+            if (user.Password != password)
+            {
+                return (false, "Invalid password", user);
+            }
+
+            return (true, "", user);
         }
     }
 }

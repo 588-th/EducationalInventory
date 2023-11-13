@@ -8,8 +8,9 @@ namespace Common
     {
         [Key]
         public int Id { get; set; }
-        public int UserId { get; set; }
-        public int ConsumableId { get; set; }
+        public string User { get; set; }
+        public string Consumable { get; set; }
         public string Date { get; set; }
+        public string Comment { get; set; }
     }
 }

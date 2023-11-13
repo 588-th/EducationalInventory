@@ -1,6 +1,5 @@
 ﻿using Logic;
 using System;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -8,35 +7,33 @@ namespace Interface.Windows
 {
     public partial class AdminWindow : Window
     {
+
+
+        private string currentEntityName = "Audience";
+        private string currentEntityNames = "Audiences";
+
         public AdminWindow()
         {
             InitializeComponent();
             InitializeButtonEventHandlers();
-            Closing += (_, __) => Application.Current.Shutdown();
+            Closing += ApplicationShutdown;
+            OutputEmptyItem(currentEntityName);
+            OutputItems(currentEntityName, true);
         }
-
-        private string currentEntityName;
 
         private void InitializeButtonEventHandlers()
         {
-            AttachButtonClickHandler(ButtonLoadAudience, "Audience");
-            AttachButtonClickHandler(ButtonLoadConsumable, "Consumable");
-            AttachButtonClickHandler(ButtonLoadConsumableCharacteristics, "ConsumableCharacteristics");
-            AttachButtonClickHandler(ButtonLoadConsumableCharacteristicsValues, "ConsumableCharacteristicsValues");
-            AttachButtonClickHandler(ButtonLoadConsumableType, "ConsumableType");
-            AttachButtonClickHandler(ButtonLoadDeveloper, "Developer");
-            AttachButtonClickHandler(ButtonLoadEquipment, "Equipment");
-            AttachButtonClickHandler(ButtonLoadEquipmentType, "EquipmentType");
-            AttachButtonClickHandler(ButtonLoadHistoryAudienceEquipment, "HistoryAudienceEquipment");
-            AttachButtonClickHandler(ButtonLoadHistoryUserConsumable, "HistoryUserConsumable");
-            AttachButtonClickHandler(ButtonLoadHistoryUserEquipment, "HistoryUserEquipment");
-            AttachButtonClickHandler(ButtonLoadInventory, "Inventory");
-            AttachButtonClickHandler(ButtonLoadModelType, "ModelType");
-            AttachButtonClickHandler(ButtonLoadNetworkSetting, "NetworkSetting");
-            AttachButtonClickHandler(ButtonLoadProgramm, "Programm");
-            AttachButtonClickHandler(ButtonLoadRoute, "Route");
-            AttachButtonClickHandler(ButtonLoadStatus, "Status");
-            AttachButtonClickHandler(ButtonLoadUser, "User");
+            var buttons = new[] {
+                ButtonLoadAudience, ButtonLoadConsumable, ButtonLoadConsumableCharacteristics, ButtonLoadConsumableCharacteristicsValues,
+                ButtonLoadConsumableType, ButtonLoadDeveloper, ButtonLoadEquipment, ButtonLoadEquipmentType, ButtonLoadHistoryInventoryEquipment,
+                ButtonLoadHistoryUserConsumable, ButtonLoadHistoryUserEquipment, ButtonLoadInventory, ButtonLoadModelType, ButtonLoadNetworkSetting,
+                ButtonLoadProgramm, ButtonLoadRoute, ButtonLoadStatus, ButtonLoadUser
+            };
+
+            foreach (var button in buttons)
+            {
+                AttachButtonClickHandler(button);
+            }
 
             ButtonBack.Click += (_, __) => ClosePage();
             ButtonBack.Click += (_, __) => UpdateInformation();
@@ -44,68 +41,85 @@ namespace Interface.Windows
             ButtonExit.Click += (_, __) => Exit();
         }
 
+        private void AttachButtonClickHandler(Controls.Button button)
+        {
+            button.Click += (_, __) =>
+            {
+                ClosePage();
+                HideBackButton();
+                currentEntityName = button.Tag.ToString();
+                currentEntityNames = button.ControlContent.ToString();
+                CommonButtonClickHandler(currentEntityName);
+            };
+        }
+
+        private void CommonButtonClickHandler(string entityName = null)
+        {
+            StackPanelItems.Children.Clear();
+            OutputHead();
+            if (entityName == "HistoryInventoryEquipment" || entityName == "HistoryUserConsumable" || entityName == "HistoryUserEquipment")
+            {
+                OutputItems(entityName, false);
+            }
+            else
+            {
+                OutputEmptyItem(entityName);
+                OutputItems(entityName, true);
+            }
+        }
+
         public void UpdateInformation()
         {
-            OutputItems(currentEntityName);
-        }
-
-        private void AttachButtonClickHandler(Controls.Button button, string entityName)
-        {
-            button.Click += (_, __) => ClosePage();
-            button.Click += (_, __) => HideBackButton();
-            button.Click += (_, __) => OutputHead(entityName);
-            button.Click += (_, __) => OutputItems(entityName);
-        }
-
-        private void Exit()
-        {
-            var authorizationWindow = new AuthorizationWindow();
-            authorizationWindow.Show();
-            Close();
-        }
-
-        private void OutputHead(string entityName)
-        {
-            StringBuilder spacedEntityName = new StringBuilder();
-            foreach (char c in entityName)
-            {
-                if (char.IsUpper(c))
-                {
-                    spacedEntityName.Append(' ');
-                }
-                spacedEntityName.Append(c);
-            }
-            TextBlockHead.Text = spacedEntityName.ToString().Trim();
-        }
-
-        private void OutputItems(string entityName)
-        {
-            currentEntityName = entityName;
-
             StackPanelItems.Children.Clear();
-
-            if (entityName != "HistoryAudienceEquipment" && entityName != "HistoryUserConsumable" && entityName != "HistoryUserEquipment")
+            if (currentEntityName == "HistoryInventoryEquipment" || currentEntityName == "HistoryUserConsumable" || currentEntityName == "HistoryUserEquipment")
             {
-                var emptyItem = new Items.EmptyItem();
-                emptyItem.MouseUp += (_, __) =>
-                {
-                    Page page = CreatePageForItem(entityName);
-                    ShowBackButton();
-                    mainFrame.Navigate(page);
-                };
-                StackPanelItems.Children.Add(emptyItem);
+                OutputItems(currentEntityName, false);
             }
-
-            var itemsList = DatabaseReader.GetEntityList(entityName);
-            foreach (var item in itemsList)
+            else
             {
-                var userControl = CreateUserControlForItem(item);
-                userControl.MouseUp += (sender, e) =>
+                OutputEmptyItem(currentEntityName);
+                OutputItems(currentEntityName, true);
+            }
+        }
+
+        private void OutputHead()
+        {
+            TextBlockHead.Text = currentEntityNames;
+        }
+
+        private void OutputEmptyItem(string entityName)
+        {
+            var emptyItem = new Items.EmptyItem();
+            emptyItem.MouseUp += (_, __) =>
+            {
+                mainFrame.Navigate(CreatePageForItem(entityName));
+                ShowBackButton();
+            };
+            StackPanelItems.Children.Add(emptyItem);
+        }
+
+        private void OutputItems(string entityName, bool openPage)
+        {
+            var entities = DatabaseReader.GetEntityList(entityName);
+            foreach (var entity in entities)
+            {
+                var userControl = CreateUserControlForItem(entity);
+                if (openPage)
                 {
-                    Page page = CreatePageForItem(item);
-                    ShowBackButton();
-                    mainFrame.Navigate(page);
-                };
+                    userControl.MouseUp += (_, __) =>
+                    {
+                        mainFrame.Navigate(CreatePageForItem(entity));
+                        ShowBackButton();
+                    };
+                }
+                else
+                {
+                    userControl.MouseUp += (_, __) =>
+                    {
+                        Window window = CreateWindowForItem(entity);
+                        window.Show();
+                    };
+                }
                 StackPanelItems.Children.Add(userControl);
             }
         }
@@ -157,6 +171,21 @@ namespace Interface.Windows
             }
         }
 
+        private Window CreateWindowForItem(object item)
+        {
+            var itemType = item.GetType();
+            var pageType = Type.GetType($"Interface.Windows.AddComment");
+
+            if (pageType != null && typeof(Window).IsAssignableFrom(pageType))
+            {
+                return (Window)Activator.CreateInstance(pageType, item);
+            }
+            else
+            {
+                throw new InvalidOperationException($"No suitable Window found for item type: {itemType.Name}");
+            }
+        }
+
         public void HideBackButton()
         {
             ButtonBack.Visibility = Visibility.Collapsed;
@@ -171,5 +200,15 @@ namespace Interface.Windows
         {
             mainFrame.Content = null;
         }
+
+        private void Exit()
+        {
+            Closing -= ApplicationShutdown;
+            var authorizationWindow = new AuthorizationWindow();
+            authorizationWindow.Show();
+            Hide();
+        }
+
+        void ApplicationShutdown(object s, EventArgs e) => Application.Current.Shutdown();
     }
 }

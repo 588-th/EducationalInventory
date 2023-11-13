@@ -75,5 +75,10 @@ namespace Logic
                 return DataBaseServer.EntityReader.GetItem<TEntity>(id);
             });
         }
+
+        public static User GetUser(string login)
+        {
+            return DataBaseServer.EntityReader.GetUser(login);
+        }
     }
 }

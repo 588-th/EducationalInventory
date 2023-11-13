@@ -1,7 +1,7 @@
 ﻿using Common;
 using Logic;
-using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Interface.Pages
@@ -12,82 +12,119 @@ namespace Interface.Pages
     public partial class ConsumableCharacteristicsEdit : Page
     {
         private ConsumableCharacteristics _consumableCharacteristics;
-        public ConsumableCharacteristicsEdit()
-        {
-            InitializeComponent();
-            InitializeUI();
-            InitializeButtons();
-        }
 
         public ConsumableCharacteristicsEdit(ConsumableCharacteristics consumableCharacteristics)
         {
             InitializeComponent();
             _consumableCharacteristics = consumableCharacteristics;
+
+            ButtonAdd.IsEnabled = false;
+            ButtonUpdate.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Update);
+            ButtonDelete.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Delete);
+
             InitializeUI();
-            InitializeButtons();
+        }
+
+        public ConsumableCharacteristicsEdit()
+        {
+            InitializeComponent();
+
+            ButtonAdd.Click += (_, __) => ModifyEntity(DatabaseModify.Action.Add);
+            ButtonUpdate.IsEnabled = false;
+            ButtonDelete.IsEnabled = false;
+
+            InitializeUI();
         }
 
         private void InitializeUI()
         {
             if (_consumableCharacteristics != null)
             {
-                ConsumableCharacteristics consumableCharacteristicsValues = GetEntity<ConsumableCharacteristics>(_consumableCharacteristics.ConsumableCharacteristicsValuesId);
-                PopulateUserComboBoxes();
-                TextBoxName.Text = _consumableCharacteristics.Name;
-                ComboBoxConsumableCharacteristicsValues.SelectedItem = consumableCharacteristicsValues.Name;
+                PopulateExistData();
             }
+            PopulateComboBoxes();
         }
 
-        private void InitializeButtons()
+        private void PopulateExistData()
         {
-            ButtonAdd.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Add);
-            ButtonUpdate.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Update);
-            ButtonDelete.Click += (_, __) => ModifyAudience(DatabaseModify.Action.Delete);
+            TextBoxName.Text = _consumableCharacteristics.Name;
+
+            ConsumableCharacteristicsValues consumableCharacteristicsValues = DatabaseReader.GetEntity<ConsumableCharacteristicsValues>(_consumableCharacteristics.ConsumableCharacteristicsValuesId);
+
+            ComboBoxConsumableCharacteristicsValues.SelectedItem = consumableCharacteristicsValues?.Name;
         }
 
-        private void PopulateUserComboBoxes()
+        private void PopulateComboBoxes()
         {
-            var consumableCharacteristics = GetEntityList<ConsumableCharacteristics>("ConsumableCharacteristics");
+            var consumableCharacteristics = DatabaseReader.GetEntityList("ConsumableCharacteristicsValues").OfType<ConsumableCharacteristicsValues>().ToList();
+
             ComboBoxConsumableCharacteristicsValues.ItemsSource = consumableCharacteristics.Select(consumableCharacteristic => consumableCharacteristic.Name);
         }
 
-        private void ModifyAudience(DatabaseModify.Action action)
+        private void ModifyEntity(DatabaseModify.Action action)
         {
-            int consumableCharacteristicsValuesId = GetIdFromComboBox(ComboBoxConsumableCharacteristicsValues);
-
-            if (consumableCharacteristicsValuesId == 0)
-            {
-                TextBlockError.Text = "Empty value";
-                TextBlockError.Visibility = System.Windows.Visibility.Visible;
-            }
-
             var consumableCharacteristics = _consumableCharacteristics ?? new ConsumableCharacteristics();
 
             consumableCharacteristics.Name = TextBoxName.Text;
-            consumableCharacteristics.ConsumableCharacteristicsValuesId = consumableCharacteristicsValuesId;
+            consumableCharacteristics.ConsumableCharacteristicsValuesId = GetIdFromComboBox(ComboBoxConsumableCharacteristicsValues);
+
+            ComboBoxItem ConsumableCharacteristicsValuesItem = ComboBoxConsumableCharacteristicsValues.SelectedItem as ComboBoxItem;
+
+            if (consumableCharacteristics.Name == "")
+            {
+                ShowError("Empty name");
+                return;
+            }
+
+            if (ConsumableCharacteristicsValuesItem == null)
+            {
+                ShowError("Empty values");
+                return;
+            }
+
+            if (action == DatabaseModify.Action.Delete)
+            {
+                Windows.MessageBox messageBox = new Windows.MessageBox("Delete object", "Are you sure you want to delete the record?");
+                if (messageBox.ShowDialog() == false)
+                {
+                    return;
+                }
+            }
 
             var (result, error) = DatabaseModify.ModifyEntity(consumableCharacteristics, action);
 
-            TextBlockError.Text = result ? "" : error;
-            TextBlockError.Visibility = result ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
+            if (!result)
+            {
+                ShowError(error);
+            }
+            else
+            {
+                ClosePage();
+            }
+        }
+
+        private void ShowError(string error)
+        {
+            TextBlockError.Text = error;
+            TextBlockError.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void ClosePage()
+        {
+            InterfaceWindows.AdminWindow.ClosePage();
+            InterfaceWindows.AdminWindow.UpdateInformation();
+            InterfaceWindows.AdminWindow.HideBackButton();
         }
 
         private int GetIdFromComboBox(ComboBox comboBox)
         {
-            string selectedName = comboBox.SelectedItem as string;
-            var consumableCharacteristics = GetEntityList<ConsumableCharacteristics>("ConsumableCharacteristics");
+            if (!(comboBox.SelectedItem is string selectedName))
+            {
+                return -1;
+            }
+            var consumableCharacteristics = DatabaseReader.GetEntityList("ConsumableCharacteristicsValues").OfType<ConsumableCharacteristicsValues>().ToList();
             var consumableCharacteristic = consumableCharacteristics.FirstOrDefault(u => u.Name == selectedName);
-            return consumableCharacteristic != null ? consumableCharacteristic.Id : 0;
-        }
-
-        private TEntity GetEntity<TEntity>(int id) where TEntity : class
-        {
-            return DatabaseReader.GetEntity<TEntity>(id);
-        }
-
-        private List<TEntity> GetEntityList<TEntity>(string entityName) where TEntity : class
-        {
-            return DatabaseReader.GetEntityList(entityName).OfType<TEntity>().ToList();
+            return consumableCharacteristic != null ? consumableCharacteristic.Id : -1;
         }
     }
 }

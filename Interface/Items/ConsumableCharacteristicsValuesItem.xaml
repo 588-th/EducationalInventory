@@ -9,7 +9,8 @@
 
     <Border x:Name="mainBorder" CornerRadius="15" Background="#303041" Margin="10,5,10,5">
         <Grid>
-            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Name" VerticalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Name" VerticalAlignment="Top"/>
+            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
         </Grid>
     </Border>
 

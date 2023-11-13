@@ -5,12 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Interface.Items"
              mc:Ignorable="d"
-             Height="200" d:DesignWidth="900">
+             Height="250" d:DesignWidth="900">
 
     <UserControl.Resources>
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="22"/>
@@ -31,15 +30,25 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="TextBlockFirstName" Grid.Row="0" Grid.Column="0" Text="FirstName" Style="{StaticResource TextBlockStyle}"/>
-            <TextBlock x:Name="TextBlockSecondName" Grid.Row="1" Grid.Column="0" Text="SecondName" Style="{StaticResource TextBlockStyle}"/>
-            <TextBlock x:Name="TextBlockMiddleName" Grid.Row="2" Grid.Column="0" Text="MiddleName" Style="{StaticResource TextBlockStyle}"/>
-            <TextBlock x:Name="TextBlockEmail" Grid.Row="0" Grid.Column="1" Text="Email" Style="{StaticResource TextBlockStyle}"/>
-            <TextBlock x:Name="TextBlockPhone" Grid.Row="1" Grid.Column="1" Text="Phone" Style="{StaticResource TextBlockStyle}"/>
-            <TextBlock x:Name="TextBlockAddress" Grid.Row="2" Grid.Column="1" Text="Address" Style="{StaticResource TextBlockStyle}"/>
-            <TextBlock x:Name="TextBlockLogin" Grid.Row="0" Grid.Column="2" Text="Login" Style="{StaticResource TextBlockStyle}"/>
-            <TextBlock x:Name="TextBlockPassword" Grid.Row="1" Grid.Column="2" Text="Password" Style="{StaticResource TextBlockStyle}"/>
-            <TextBlock x:Name="TextBlockRole" Grid.Row="2" Grid.Column="2" Text="Role" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="FirstName" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="SecondName" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="MiddleName" VerticalAlignment="Top" Grid.Row="2" Grid.Column="0"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Email" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Phone" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Address" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Login" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Password" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Role" VerticalAlignment="Top" Grid.Row="2" Grid.Column="2"/>
+
+            <TextBlock x:Name="TextBlockFirstName" Grid.Row="0" Grid.Column="0" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock x:Name="TextBlockSecondName" Grid.Row="1" Grid.Column="0" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock x:Name="TextBlockMiddleName" Grid.Row="2" Grid.Column="0" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock x:Name="TextBlockEmail" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock x:Name="TextBlockPhone" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock x:Name="TextBlockAddress" Grid.Row="2" Grid.Column="1" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock x:Name="TextBlockLogin" Grid.Row="0" Grid.Column="2" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock x:Name="TextBlockPassword" Grid.Row="1" Grid.Column="2" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock x:Name="TextBlockRole" Grid.Row="2" Grid.Column="2" Style="{StaticResource TextBlockStyle}"/>
         </Grid>
     </Border>
 

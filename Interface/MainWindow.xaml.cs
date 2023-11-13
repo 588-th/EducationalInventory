@@ -1,4 +1,5 @@
-﻿using Interface.Windows;
+﻿using Common;
+using Interface.Windows;
 using System.Windows;
 
 namespace Interface
@@ -8,6 +9,7 @@ namespace Interface
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static User AuthUser;
         public MainWindow()
         {
             InitializeComponent();

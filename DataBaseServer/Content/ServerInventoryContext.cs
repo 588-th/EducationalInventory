@@ -18,7 +18,7 @@ namespace DataBaseServer
         public DbSet<Developer> Developers { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
         public DbSet<EquipmentType> EquipmentsTypes { get; set; }
-        public DbSet<HistoryAudienceEquipment> HistoryAudienceEquipments { get; set; }
+        public DbSet<HistoryInventoryEquipment> HistoryInventoryEquipments { get; set; }
         public DbSet<HistoryUserConsumable> HistoryUserConsumables { get; set; }
         public DbSet<HistoryUserEquipment> HistoryUserEquipments { get; set; }
         public DbSet<Inventory> Inventories { get; set; }

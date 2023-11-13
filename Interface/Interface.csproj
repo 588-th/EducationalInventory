@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LogoV2.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\DataBaseLocal\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
@@ -61,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\TextBox.xaml.cs">
+      <DependentUpon>TextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Items\AudienceItem.xaml.cs">
       <DependentUpon>AudienceItem.xaml</DependentUpon>
     </Compile>
@@ -70,6 +76,9 @@
     <Compile Include="Items\EmptyItem.xaml.cs">
       <DependentUpon>EmptyItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Items\HistoryInventoryEquipmentItem.xaml.cs">
+      <DependentUpon>HistoryInventoryEquipmentItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Items\NetworkSettingItem.xaml.cs">
       <DependentUpon>NetworkSettingItem.xaml</DependentUpon>
     </Compile>
@@ -78,6 +87,12 @@
     </Compile>
     <Compile Include="Pages\AudienceEdit.xaml.cs">
       <DependentUpon>AudienceEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EquipmentTypeEdit.xaml.cs">
+      <DependentUpon>EquipmentTypeEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddComment.xaml.cs">
+      <DependentUpon>AddComment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
@@ -100,9 +115,6 @@
     </Compile>
     <Compile Include="Items\EquipmentItem.xaml.cs">
       <DependentUpon>EquipmentItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Items\HistoryAudienceEquipmentItem.xaml.cs">
-      <DependentUpon>HistoryAudienceEquipmentItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\HistoryUserConsumableItem.xaml.cs">
       <DependentUpon>HistoryUserConsumableItem.xaml</DependentUpon>
@@ -180,6 +192,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Windows\MessageBox.xaml.cs">
+      <DependentUpon>MessageBox.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Items\AudienceItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,6 +211,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Items\HistoryInventoryEquipmentItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Items\NetworkSettingItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,6 +224,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AudienceEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EquipmentTypeEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddComment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -229,10 +260,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Items\EquipmentItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Items\HistoryAudienceEquipmentItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -332,6 +359,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\MessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -371,6 +402,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\AddItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Placeholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LogoV2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LogoV2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

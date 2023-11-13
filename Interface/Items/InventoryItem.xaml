@@ -5,21 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Interface.Items"
              mc:Ignorable="d" 
-             Height="200" d:DesignWidth="900">
+             Height="150" d:DesignWidth="900">
 
     <Border x:Name="mainBorder" CornerRadius="15" Background="#303041" Margin="10,5,10,5">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Name" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-            <TextBlock x:Name="TextBlockStartDate" HorizontalAlignment="Center" Margin="0,75,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="StartDate" VerticalAlignment="Top"/>
-            <TextBlock x:Name="TextBlockEndDate" HorizontalAlignment="Center" Margin="0,75,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="EndDate" VerticalAlignment="Top" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Name" VerticalAlignment="Top" Grid.Column="0"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Start Date" VerticalAlignment="Top" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="End Date" VerticalAlignment="Top" Grid.Column="2"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Equipment" VerticalAlignment="Top" Grid.Column="3"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="User" VerticalAlignment="Top" Grid.Column="4"/>
 
-            <TextBlock x:Name="TextBlockEquipment" HorizontalAlignment="Center" Margin="0,125,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Equipment" VerticalAlignment="Top"/>
-            <TextBlock x:Name="TextBlockUser" HorizontalAlignment="Center" Margin="0,125,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="User" VerticalAlignment="Top" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Column="0"/>
+            <TextBlock x:Name="TextBlockStartDate" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockEndDate" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Column="2"/>
+            <TextBlock x:Name="TextBlockEquipment" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Column="3"/>
+            <TextBlock x:Name="TextBlockUser" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Column="4"/>
         </Grid>
     </Border>
 

@@ -57,7 +57,7 @@ namespace DataBaseLocal
             {
                 using (var dbContext = new LocalInventoryContext())
                 {
-                    dbContext.Audiences.First();
+                    dbContext.Users.FirstOrDefault();
                     return true;
                 }
             }

@@ -1,5 +1,8 @@
 ﻿using Common;
+using System.IO;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace Interface.Items
 {
@@ -30,21 +33,42 @@ namespace Interface.Items
             Consumable consumable = Logic.DatabaseReader.GetEntity<Consumable>(_equipment.ConsumableId);
 
 
-            // ImagePhoto. =
+            ImagePhoto.Source = ByteToImage();
             TextBlockNumber.Text = _equipment.Number.ToString();
             TextBlockName.Text = _equipment.Name.ToString();
-            TextBlockType.Text = equipmentType.Name;
-            TextBlockModel.Text = modelType.Name;
-            TextBlockAudience.Text = audience.Name;
-            TextBlockResponsibleUser.Text = responsibleUser.FirstName + " " + responsibleUser.MiddleName;
-            TextBlockTemporarilyResponsibleUser.Text = TemporarilyResponsibleUser.FirstName + " " + TemporarilyResponsibleUser.MiddleName;
+            TextBlockType.Text = equipmentType == null ? "" : equipmentType.Name;
+            TextBlockModel.Text = modelType == null ? "" : modelType.Name;
+            TextBlockAudience.Text = audience == null ? "" : audience.Name;
+            TextBlockResponsibleUser.Text = responsibleUser == null ? "" : responsibleUser.FirstName + " " + responsibleUser.MiddleName;
+            TextBlockTemporarilyResponsibleUser.Text = TemporarilyResponsibleUser == null ? "" : TemporarilyResponsibleUser.FirstName + " " + TemporarilyResponsibleUser.MiddleName;
             TextBlockCost.Text = _equipment.Cost.ToString();
-            TextBlockRoute.Text = route.Name;
-            TextBlockStatus.Text = status.Name;
-            TextBlockNetworkSettings.Text = networkSetting.Ip + " " + networkSetting.Mask + "\n" + networkSetting.Gateway + " " + networkSetting.Dns;
-            TextBlockProgramm.Text = programm.Name;
-            TextBlockConsumable.Text = consumable.Name;
+            TextBlockRoute.Text = route == null ? "" : route.Name;
+            TextBlockStatus.Text = status == null ? "" : status.Name;
+            TextBlockNetworkSettings.Text = networkSetting == null ? "" : networkSetting.Ip + " " + networkSetting.Mask + "\n" + networkSetting.Gateway + " " + networkSetting.Dns;
+            TextBlockProgramm.Text = programm == null ? "" : programm.Name;
+            TextBlockConsumable.Text = consumable == null ? "" : consumable.Name;
             TextBlockComment.Text = _equipment.Comment;
+        }
+
+        private ImageSource ByteToImage()
+        {
+            if (_equipment.Photo != null && _equipment.Photo.Length > 0)
+            {
+                using (MemoryStream memoryStream = new MemoryStream(_equipment.Photo))
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.StreamSource = memoryStream;
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.EndInit();
+
+                    return bitmapImage;
+                }
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

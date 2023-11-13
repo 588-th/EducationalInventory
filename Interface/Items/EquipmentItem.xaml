@@ -5,31 +5,53 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Interface.Items"
              mc:Ignorable="d" 
-             Height="400" d:DesignWidth="900">
+             Height="300" d:DesignWidth="900">
 
     <Border x:Name="mainBorder" CornerRadius="15" Background="#303041" Margin="10,5,10,5">
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <Image x:Name="ImagePhoto" HorizontalAlignment="Left" Height="149" Margin="10,10,0,0" VerticalAlignment="Top" Width="150"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Name" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Number" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Type" VerticalAlignment="Top" Grid.Row="0" Grid.Column="3"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Model" VerticalAlignment="Top" Grid.Row="0" Grid.Column="4"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Audience" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Responsible User" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Temp Responsible User" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Cost" VerticalAlignment="Top" Grid.Row="1" Grid.Column="3"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Route" VerticalAlignment="Top" Grid.Row="1" Grid.Column="4"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Status" VerticalAlignment="Top" Grid.Row="2" Grid.Column="0"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Network Settings" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Programm" VerticalAlignment="Top" Grid.Row="2" Grid.Column="2"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Consumable" VerticalAlignment="Top" Grid.Row="2" Grid.Column="3"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#DEDEDE" FontSize="16" FontWeight="Light" Text="Comment" VerticalAlignment="Top" Grid.Row="2" Grid.Column="4"/>
 
-            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Left" Margin="206,53,0,317" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Name" VerticalAlignment="Center"/>
-            <TextBlock x:Name="TextBlockNumber" HorizontalAlignment="Left" Margin="206,19,0,352" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Number" VerticalAlignment="Center"/>
-            <TextBlock x:Name="TextBlockType" HorizontalAlignment="Left" Margin="206,87,0,283" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Type" VerticalAlignment="Center"/>
-            <TextBlock x:Name="TextBlockModel" HorizontalAlignment="Left" Margin="206,117,0,0" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Model" VerticalAlignment="Top"/>
-
-            <TextBlock x:Name="TextBlockAudience" HorizontalAlignment="Left" Margin="10,205,0,165" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Audience" VerticalAlignment="Center"/>
-            <TextBlock x:Name="TextBlockResponsibleUser" HorizontalAlignment="Left" Margin="10,258,0,112" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="ResponsibleUser" VerticalAlignment="Center"/>
-            <TextBlock x:Name="TextBlockTemporarilyResponsibleUser" HorizontalAlignment="Left" Margin="10,314,0,56" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="TemporarilyResponsibleUser" VerticalAlignment="Center"/>
-
-            <TextBlock x:Name="TextBlockCost" HorizontalAlignment="Left" Margin="555,20,0,350" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Cost" VerticalAlignment="Center"/>
-            <TextBlock x:Name="TextBlockRoute" HorizontalAlignment="Left" Margin="555,49,0,321" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Route" VerticalAlignment="Center"/>
-            <TextBlock x:Name="TextBlockStatus" HorizontalAlignment="Left" Margin="555,87,0,283" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Status" VerticalAlignment="Center"/>
-
-            <TextBlock x:Name="TextBlockNetworkSettings" HorizontalAlignment="Left" Margin="555,160,0,210" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="NetworkSettings" VerticalAlignment="Center"/>
-            <TextBlock x:Name="TextBlockProgramm" HorizontalAlignment="Left" Margin="555,210,0,160" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Programm" VerticalAlignment="Center"/>
-            <TextBlock x:Name="TextBlockConsumable" HorizontalAlignment="Left" Margin="555,263,0,107" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Consumable" VerticalAlignment="Center"/>
-
-            <TextBlock x:Name="TextBlockComment" HorizontalAlignment="Left" Margin="555,332,0,38" TextWrapping="Wrap" Foreground="White" FontSize="22" Text="Comment" VerticalAlignment="Center"/>
+            <Image x:Name="ImagePhoto" Source="/Images/Placeholder.png" HorizontalAlignment="Center" Height="80" VerticalAlignment="Center" Width="80"/>
+            <TextBlock x:Name="TextBlockName" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockNumber" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2"/>
+            <TextBlock x:Name="TextBlockType" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3"/>
+            <TextBlock x:Name="TextBlockModel" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="0" Grid.Column="4"/>
+            <TextBlock x:Name="TextBlockAudience" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+            <TextBlock x:Name="TextBlockResponsibleUser" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockTemporarilyResponsibleUser" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2"/>
+            <TextBlock x:Name="TextBlockCost" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="1" Grid.Column="3"/>
+            <TextBlock x:Name="TextBlockRoute" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
+            <TextBlock x:Name="TextBlockStatus" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+            <TextBlock x:Name="TextBlockNetworkSettings" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
+            <TextBlock x:Name="TextBlockProgramm" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"/>
+            <TextBlock x:Name="TextBlockConsumable" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="2" Grid.Column="3"/>
+            <TextBlock x:Name="TextBlockComment" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="22" VerticalAlignment="Center" Grid.Row="2" Grid.Column="4"/>
 
         </Grid>
     </Border>

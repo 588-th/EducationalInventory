@@ -18,12 +18,10 @@ namespace Interface.Items
 
         private void LoadData()
         {
-            User user = Logic.DatabaseReader.GetEntity<User>(_historyUserEquipment.UserId);
-            Equipment equipment = Logic.DatabaseReader.GetEntity<Equipment>(_historyUserEquipment.EquipmentId);
-
-            TextBlockUser.Text = user.FirstName + " " + user.MiddleName;
-            TextBlockEquipment.Text = equipment.Name;
+            TextBlockUser.Text = _historyUserEquipment.User;
+            TextBlockEquipment.Text = _historyUserEquipment.Equipment;
             TextBlockDate.Text = _historyUserEquipment.Date;
+            TextBlockComment.Text = _historyUserEquipment.Comment;
         }
     }
 }

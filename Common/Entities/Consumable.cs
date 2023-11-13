@@ -11,7 +11,7 @@ namespace Common
         public string Name { get; set; }
         public string Description { get; set; }
         public string ReceiptDate { get; set; }
-        public string Photo { get; set; }
+        public byte[] Photo { get; set; }
         public int Count { get; set; }
         public int ResponsibleUserId { get; set; }
         public int TemporarilyResponsibleUserId { get; set; }
